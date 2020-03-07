@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "declaration": true,
+    "module": "ESNext",
+    "outDir": "dist",
+    "strict": true,
+    "target": "ES5"
+  }
+}

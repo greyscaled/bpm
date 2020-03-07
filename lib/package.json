@@ -1,0 +1,39 @@
+{
+  "name": "@vapurrmaid/bpm",
+  "version": "0.1.0",
+  "description": "Class for handling musical BPM conversions.",
+  "keywords": [
+    "bpm",
+    "music",
+    "tempo"
+  ],
+  "license": "MIT",
+  "author": {
+    "email": "vapurrmaid@pm.me",
+    "name": "Gregory (Grey) Barkans",
+    "url": "https://github.com/vapurrmaid"
+  },
+  "files": [
+    "dist"
+  ],
+  "main": "dist/bpm.js",
+  "scripts": {
+    "build": "tsc",
+    "clean": "rm -rf dist"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "husky": "^4.2.3",
+    "lint-staged": "^10.0.8",
+    "prettier": "^1.19.1",
+    "typescript": "^3.8.3"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{md,ts,tsx}": "prettier --write --prose-wrap=always --print-width=80"
+  }
+}
