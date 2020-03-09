@@ -8,7 +8,8 @@
   },
   "dependencies": {
     "react": "^16.13.0",
-    "react-dom": "^16.13.0"
+    "react-dom": "^16.13.0",
+    "tone": "^14.5.40"
   },
   "devDependencies": {
     "@types/node": "^12.0.0",

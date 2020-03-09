@@ -1,15 +1,19 @@
 import { BPM, BPMNote } from "@vapurrmaid/bpm";
 import React from "react";
+import { Transport } from "tone";
 
 import "./app.css";
+import { Metronome } from "./metronome";
 
 const formatter = new Intl.NumberFormat("en", {
-  maximumFractionDigits: 3
+  maximumSignificantDigits: 3
 });
 
 export const App: React.FC = () => {
   const [bpm, setBpm] = React.useState<number>(120);
+  const [beatsPerMeasure, setBeatsPerMeasure] = React.useState<number>(4);
   const [beatNote, setBeatNote] = React.useState<BPMNote>("quarter");
+  const [isPlaying, setIsPlaying] = React.useState<boolean>(false);
 
   const bpmCalculator = new BPM(bpm, beatNote);
 
@@ -41,6 +45,8 @@ export const App: React.FC = () => {
     }
   ];
 
+  Metronome.setBPM(bpm);
+
   return (
     <>
       <header>
@@ -63,11 +69,31 @@ export const App: React.FC = () => {
               min={0}
               onChange={e => {
                 if (e.target) {
-                  setBpm(Number(e.target.value));
+                  setBpm(Number.parseInt(e.target.value));
                 }
               }}
               type="range"
               value={bpm}
+            />
+          </div>
+
+          <div className="control-box">
+            <label className="control-label" htmlFor="beatPerMeasureSelect">
+              Beats Per Measure
+            </label>
+            <input
+              className="control"
+              id="beatPerMeasureSelect"
+              min={2}
+              onChange={e => {
+                if (e.target) {
+                  const val = Number.parseInt(e.target.value);
+                  setBeatsPerMeasure(val);
+                  Metronome.setBeatsPerMeasure(val);
+                }
+              }}
+              type="number"
+              value={beatsPerMeasure}
             />
           </div>
 
@@ -95,11 +121,30 @@ export const App: React.FC = () => {
         </fieldset>
 
         <fieldset className="control-set">
-          {notes.map(({ bpm, note, seconds }) => (
-            <div className="control-box">
+          <legend>Notes</legend>
+
+          {notes.map(({ bpm, note, seconds }, idx) => (
+            <div className="control-box" key={idx}>
               {`${note} = ${bpm} (${formatter.format(seconds)} seconds)`}
             </div>
           ))}
+        </fieldset>
+
+        <fieldset className="control-set">
+          <button
+            onClick={() => {
+              if (isPlaying) {
+                Transport.pause();
+                Metronome.stop();
+                return setIsPlaying(false);
+              }
+              Transport.start();
+              Metronome.start();
+              setIsPlaying(true);
+            }}
+          >
+            {isPlaying ? "Stop" : "Start"}
+          </button>
         </fieldset>
       </main>
     </>
