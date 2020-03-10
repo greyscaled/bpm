@@ -6,9 +6,6 @@ import { ReactComponent as ArrowIcon } from "./arrow.svg";
 import { ClickTrack } from "../util/clicktrack";
 import { formatDecimal } from "../util/strings";
 
-const BPM_MAX = 220;
-const BPM_MIN = 1;
-const BEATS_PER_MEASURE_MIN = 2;
 const clickTrack = new ClickTrack();
 
 function beatNoteToNumber(note: Note) {
@@ -98,9 +95,9 @@ export const BPMCalculator: React.FC = () => {
             <button
               aria-label="Decrease beats per minute"
               className="btn"
-              disabled={bpm === BPM_MIN}
+              disabled={bpm === ClickTrack.MIN_BEATS_PER_MINUTE}
               onClick={() => {
-                if (bpm - 1 >= BPM_MIN) {
+                if (bpm - 1 >= ClickTrack.MIN_BEATS_PER_MINUTE) {
                   setBpm(bpm - 1);
                 }
               }}
@@ -110,9 +107,9 @@ export const BPMCalculator: React.FC = () => {
             <button
               aria-label="Increase beats per minute"
               className="btn"
-              disabled={bpm === BPM_MAX}
+              disabled={bpm === ClickTrack.MAX_BEATS_PER_MINUTE}
               onClick={() => {
-                if (bpm + 1 <= BPM_MAX) {
+                if (bpm + 1 <= ClickTrack.MAX_BEATS_PER_MINUTE) {
                   setBpm(bpm + 1);
                 }
               }}
@@ -145,8 +142,8 @@ export const BPMCalculator: React.FC = () => {
             className="bpm-display"
             disabled
             id="bpmDisplay"
-            max={BPM_MAX}
-            min={BPM_MIN}
+            max={ClickTrack.MAX_BEATS_PER_MINUTE}
+            min={ClickTrack.MIN_BEATS_PER_MINUTE}
             type="text"
             value={bpm}
           />
@@ -192,10 +189,10 @@ export const BPMCalculator: React.FC = () => {
             <button
               aria-label="Decrease beats per measure"
               className="btn"
-              disabled={beatsPerMeasure === BEATS_PER_MEASURE_MIN}
+              disabled={beatsPerMeasure === ClickTrack.MIN_BEATS_PER_MEASURE}
               onClick={() => {
                 const result = beatsPerMeasure - 1;
-                if (result >= BEATS_PER_MEASURE_MIN) {
+                if (result >= ClickTrack.MIN_BEATS_PER_MEASURE) {
                   setBeatsPerMeasure(result);
                   clickTrack.setBeatsPerMeasure(result);
                 }
@@ -221,7 +218,7 @@ export const BPMCalculator: React.FC = () => {
               className="time-signature"
               disabled
               id="beatsPerMeasureDisplay"
-              min={BEATS_PER_MEASURE_MIN}
+              min={ClickTrack.MIN_BEATS_PER_MEASURE}
               style={{ borderBottom: "2px solid red" }}
               type="text"
               value={beatsPerMeasure}

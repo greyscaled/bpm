@@ -30,6 +30,15 @@ type ClickCbFunction = (args: ClickCbArgs) => void;
  *  ct.start();
  */
 export class ClickTrack {
+  /** Maximum BPM this ClickTrack supports */
+  static readonly MAX_BEATS_PER_MINUTE = 220;
+
+  /** Minimum BPM this ClickTrack supports */
+  static readonly MIN_BEATS_PER_MINUTE = 1;
+
+  /** Minimum beats per measure this ClickTrack supports */
+  static readonly MIN_BEATS_PER_MEASURE = 2;
+
   /** A shared synth instance is used to output sound for each ClickTrack */
   private static readonly synth = new MembraneSynth().toDestination();
 
