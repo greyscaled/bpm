@@ -36,7 +36,25 @@ export class BPM {
    * @param beatNote Note that's considered 1 beat. Defaults to a quarter note.
    */
   constructor(bpm: number, beatNote: Note = "quarter") {
-    this.value = this.applyBPMNote(bpm, beatNote);
+    this.value = this.normalizeToQuarter(bpm, beatNote);
+  }
+
+  private normalizeToQuarter(bpm: number, beatNote: Note) {
+    if (beatNote === "thirtysecondth") {
+      return bpm / 8;
+    } else if (beatNote === "sixteenth") {
+      return bpm / 4;
+    } else if (beatNote === "eigth") {
+      return bpm / 2;
+    } else if (beatNote === "quarter") {
+      return bpm;
+    } else if (beatNote === "half") {
+      return bpm * 2;
+    } else if (beatNote === "whole") {
+      return bpm * 4;
+    }
+
+    throw new Error(`beatNote '${beatNote}' is not a recognized note.`);
   }
 
   private applyBPMNote(bpm: number, beatNote: Note) {
