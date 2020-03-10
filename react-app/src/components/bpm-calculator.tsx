@@ -3,12 +3,13 @@ import React from "react";
 
 import "./bpm-calculator.css";
 import { ReactComponent as ArrowIcon } from "./arrow.svg";
-import { Metronome } from "../util/metronome";
+import { ClickTrack } from "../util/clicktrack";
 import { formatDecimal } from "../util/strings";
 
 const BPM_MAX = 220;
 const BPM_MIN = 1;
 const BEATS_PER_MEASURE_MIN = 2;
+const clickTrack = new ClickTrack();
 
 function beatNoteToNumber(note: Note) {
   if (note === "thirtysecondth") {
@@ -35,13 +36,15 @@ export const BPMCalculator: React.FC = () => {
 
   const bpmCalculator = new BPM(bpm, beatNote);
 
-  Metronome.setBPM(bpm);
+  clickTrack.setBPM(bpm);
 
   // hook that updates currentBeat whenever the Metronome ticks. Must ensure
   // this hook has zero dependencies so that the callback only gets
   // registered once.
   React.useEffect(() => {
-    Metronome.addCallback(beat => setCurrentBeat(beat));
+    clickTrack.addClickCallback(({ currentBeat }) =>
+      setCurrentBeat(currentBeat)
+    );
   }, []);
 
   const notes = [
@@ -181,7 +184,7 @@ export const BPMCalculator: React.FC = () => {
               onClick={() => {
                 const result = beatsPerMeasure + 1;
                 setBeatsPerMeasure(result);
-                Metronome.setBeatsPerMeasure(result);
+                clickTrack.setBeatsPerMeasure(result);
               }}
             >
               <ArrowIcon className="arrow" />
@@ -194,7 +197,7 @@ export const BPMCalculator: React.FC = () => {
                 const result = beatsPerMeasure - 1;
                 if (result >= BEATS_PER_MEASURE_MIN) {
                   setBeatsPerMeasure(result);
-                  Metronome.setBeatsPerMeasure(result);
+                  clickTrack.setBeatsPerMeasure(result);
                 }
               }}
               style={{ marginTop: "5px" }}
@@ -304,11 +307,11 @@ export const BPMCalculator: React.FC = () => {
             }`}
             onClick={() => {
               if (isPlaying) {
-                Metronome.stop();
+                clickTrack.stop();
                 return setIsPlaying(false);
               }
 
-              Metronome.start().then(() => {
+              clickTrack.start().then(() => {
                 setIsPlaying(true);
               });
             }}
