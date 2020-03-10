@@ -179,7 +179,9 @@ export const BPMCalculator: React.FC = () => {
               aria-label="Increase beats per measure"
               className="btn"
               onClick={() => {
-                setBeatsPerMeasure(beatsPerMeasure + 1);
+                const result = beatsPerMeasure + 1;
+                setBeatsPerMeasure(result);
+                Metronome.setBeatsPerMeasure(result);
               }}
             >
               <ArrowIcon className="arrow" />
@@ -189,8 +191,10 @@ export const BPMCalculator: React.FC = () => {
               className="btn"
               disabled={beatsPerMeasure === BEATS_PER_MEASURE_MIN}
               onClick={() => {
-                if (beatsPerMeasure - 1 >= BEATS_PER_MEASURE_MIN) {
-                  setBeatsPerMeasure(beatsPerMeasure - 1);
+                const result = beatsPerMeasure - 1;
+                if (result >= BEATS_PER_MEASURE_MIN) {
+                  setBeatsPerMeasure(result);
+                  Metronome.setBeatsPerMeasure(result);
                 }
               }}
               style={{ marginTop: "5px" }}
