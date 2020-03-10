@@ -1,4 +1,4 @@
-import { BPM, BPMNote } from "@vapurrmaid/bpm";
+import { BPM, Note } from "@vapurrmaid/bpm";
 import React from "react";
 
 import "./calculator.css";
@@ -8,7 +8,7 @@ import { formatDecimal } from "../util/strings";
 export const Calculator: React.FC = () => {
   const [bpm, setBpm] = React.useState<number>(120);
   const [beatsPerMeasure, setBeatsPerMeasure] = React.useState<number>(4);
-  const [beatNote, setBeatNote] = React.useState<BPMNote>("quarter");
+  const [beatNote, setBeatNote] = React.useState<Note>("quarter");
   const [isPlaying, setIsPlaying] = React.useState<boolean>(false);
   const [currentBeat, setCurrentBeat] = React.useState<number>(1);
 
@@ -101,7 +101,7 @@ export const Calculator: React.FC = () => {
             id="beatNoteSelect"
             onChange={e => {
               if (e.target) {
-                setBeatNote(e.target.value as BPMNote);
+                setBeatNote(e.target.value as Note);
               }
             }}
             value={beatNote}
