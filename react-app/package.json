@@ -41,6 +41,6 @@
     }
   },
   "lint-staged": {
-    "*.{md,ts,tsx}": "prettier --write --prose-wrap=always --print-width=80"
+    "*.{json,md,svg,ts,tsx}": "prettier --write --prose-wrap=always --print-width=80"
   }
 }

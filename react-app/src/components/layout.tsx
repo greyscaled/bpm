@@ -3,13 +3,28 @@ import React from "react";
 export const Layout: React.FC = ({ children }) => (
   <>
     <header>
-      <h1>BPM Calculator</h1>
+      <h1>Beats Calculator</h1>
     </header>
 
-    <main>{children}</main>
+    <main>
+      <article style={{ marginBottom: "20px" }}>
+        A digital metronome with extended beat and note length metrics.
+      </article>
 
-    <footer>
-      <p>{`\u00A9 ${new Date().getFullYear()} vapurrmaid`}</p>
+      {children}
+    </main>
+
+    <footer style={{ marginTop: "40px" }}>
+      <p>
+        {`\u00A9 ${new Date().getFullYear()}`}{" "}
+        <a
+          href="https://github.com/vapurrmaid"
+          rel="noreferrer noopener"
+          target="_blank"
+        >
+          @vapurrmaid
+        </a>
+      </p>
     </footer>
   </>
 );
