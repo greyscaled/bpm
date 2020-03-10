@@ -1,7 +1,9 @@
 {
   "compilerOptions": {
     "declaration": true,
+    "lib": ["ESNext"],
     "module": "ESNext",
+    "moduleResolution": "Node",
     "outDir": "dist",
     "strict": true,
     "target": "ES5"

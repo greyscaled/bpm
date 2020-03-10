@@ -30,7 +30,9 @@
     "build": "tsc",
     "clean": "rm -rf dist"
   },
-  "dependencies": {},
+  "dependencies": {
+    "@vapurrmaid/validate": "^0.2.0"
+  },
   "devDependencies": {
     "husky": "^4.2.3",
     "lint-staged": "^10.0.8",
