@@ -1,12 +1,17 @@
 {
   "name": "@vapurrmaid/bpm",
   "version": "0.1.0",
-  "description": "Class for handling musical BPM conversions.",
+  "description": "Zero-dependency package for working with beats per minute (BPM) calculations.",
   "keywords": [
     "bpm",
     "music",
     "tempo"
   ],
+  "homepage": "https://github.com/vapurrmaid/bpm/tree/master/lib",
+  "bugs": {
+    "email": "vapurrmaid@pm.me",
+    "url": "https://github.com/vapurrmaid/bpm/tree/master/lib"
+  },
   "license": "MIT",
   "author": {
     "email": "vapurrmaid@pm.me",
@@ -17,6 +22,10 @@
     "dist"
   ],
   "main": "dist/bpm.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vapurrmaid/bpm"
+  },
   "scripts": {
     "build": "tsc",
     "clean": "rm -rf dist"
@@ -34,6 +43,6 @@
     }
   },
   "lint-staged": {
-    "*.{md,ts,tsx}": "prettier --write --prose-wrap=always --print-width=80"
+    "*.{md,ts}": "prettier --print-width=80 --prose-wrap=always --write"
   }
 }
