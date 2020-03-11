@@ -30,6 +30,7 @@ export const BPMCalculator: React.FC = () => {
   const [beatNote, setBeatNote] = React.useState<NoteDuration>("quarter");
   const [isPlaying, setIsPlaying] = React.useState<boolean>(false);
   const [currentBeat, setCurrentBeat] = React.useState<number>(1);
+  const timerId = React.useRef<number | undefined>(undefined);
 
   const bpmCalculator = new BPM(bpm);
 
@@ -77,6 +78,40 @@ export const BPMCalculator: React.FC = () => {
     }
   ];
 
+  const handleDecreaseBpm = () => {
+    if (bpm - 1 >= ClickTrack.MIN_BEATS_PER_MINUTE) {
+      setBpm(bpm - 1);
+    }
+
+    timerId.current = window.setInterval(() => {
+      setBpm(bpm => {
+        if (bpm - 1 >= ClickTrack.MIN_BEATS_PER_MINUTE) {
+          return bpm - 1;
+        }
+        return bpm;
+      });
+    }, 200);
+  };
+
+  const handleIncreaseBpm = () => {
+    if (bpm + 1 <= ClickTrack.MAX_BEATS_PER_MINUTE) {
+      setBpm(bpm + 1);
+    }
+
+    timerId.current = window.setInterval(() => {
+      setBpm(bpm => {
+        if (bpm + 1 <= ClickTrack.MAX_BEATS_PER_MINUTE) {
+          return bpm + 1;
+        }
+        return bpm;
+      });
+    }, 200);
+  };
+
+  const clearTimer = () => {
+    window.clearInterval(timerId.current);
+  };
+
   return (
     <div className="calculator">
       <fieldset className="fieldset">
@@ -95,24 +130,22 @@ export const BPMCalculator: React.FC = () => {
             <button
               aria-label="Decrease beats per minute"
               className="btn"
-              disabled={bpm === ClickTrack.MIN_BEATS_PER_MINUTE}
-              onClick={() => {
-                if (bpm - 1 >= ClickTrack.MIN_BEATS_PER_MINUTE) {
-                  setBpm(bpm - 1);
-                }
-              }}
+              onTouchStart={handleDecreaseBpm}
+              onTouchEnd={clearTimer}
+              onMouseDown={handleDecreaseBpm}
+              onMouseUp={clearTimer}
+              onMouseLeave={clearTimer}
             >
               <ArrowIcon className="arrow arrow--left" />
             </button>
             <button
               aria-label="Increase beats per minute"
               className="btn"
-              disabled={bpm === ClickTrack.MAX_BEATS_PER_MINUTE}
-              onClick={() => {
-                if (bpm + 1 <= ClickTrack.MAX_BEATS_PER_MINUTE) {
-                  setBpm(bpm + 1);
-                }
-              }}
+              onTouchStart={handleIncreaseBpm}
+              onTouchEnd={clearTimer}
+              onMouseDown={handleIncreaseBpm}
+              onMouseUp={clearTimer}
+              onMouseLeave={clearTimer}
               style={{ marginLeft: "5px" }}
             >
               <ArrowIcon className="arrow arrow--right" />
