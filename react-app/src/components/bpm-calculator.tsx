@@ -1,4 +1,4 @@
-import { BPM, Note } from "@vapurrmaid/bpm";
+import { BPM, NoteDuration } from "@vapurrmaid/bpm";
 import React from "react";
 
 import "./bpm-calculator.css";
@@ -8,7 +8,7 @@ import { formatDecimal } from "../util/strings";
 
 const clickTrack = new ClickTrack();
 
-function beatNoteToNumber(note: Note) {
+function beatNoteToNumber(note: NoteDuration) {
   if (note === "thirtysecondth") {
     return 32;
   } else if (note === "sixteenth") {
@@ -27,11 +27,11 @@ function beatNoteToNumber(note: Note) {
 export const BPMCalculator: React.FC = () => {
   const [bpm, setBpm] = React.useState<number>(120);
   const [beatsPerMeasure, setBeatsPerMeasure] = React.useState<number>(4);
-  const [beatNote, setBeatNote] = React.useState<Note>("quarter");
+  const [beatNote, setBeatNote] = React.useState<NoteDuration>("quarter");
   const [isPlaying, setIsPlaying] = React.useState<boolean>(false);
   const [currentBeat, setCurrentBeat] = React.useState<number>(1);
 
-  const bpmCalculator = new BPM(bpm, beatNote);
+  const bpmCalculator = new BPM(bpm);
 
   clickTrack.setBPM(bpm);
 
@@ -46,33 +46,33 @@ export const BPMCalculator: React.FC = () => {
 
   const notes = [
     {
-      beats: bpmCalculator.asSixteenth,
+      beats: bpmCalculator.numberOfBeatsFor("sixteenth", beatNote),
       note: "𝅘𝅥𝅯",
-      seconds: bpmCalculator.toSecondsPerBeat("sixteenth"),
+      seconds: bpmCalculator.durationFor("sixteenth", beatNote),
       value: "sixteenth"
     },
     {
-      beats: bpmCalculator.asEigth,
+      beats: bpmCalculator.numberOfBeatsFor("eigth", beatNote),
       note: "𝅘𝅥𝅮",
-      seconds: bpmCalculator.toSecondsPerBeat("eigth"),
+      seconds: bpmCalculator.durationFor("eigth", beatNote),
       value: "eigth"
     },
     {
-      beats: bpmCalculator.asQuarter,
+      beats: bpmCalculator.numberOfBeatsFor("quarter", beatNote),
       note: "𝅘𝅥",
-      seconds: bpmCalculator.toSecondsPerBeat("quarter"),
+      seconds: bpmCalculator.durationFor("quarter", beatNote),
       value: "quarter"
     },
     {
-      beats: bpmCalculator.asHalf,
+      beats: bpmCalculator.numberOfBeatsFor("half", beatNote),
       note: "𝅗𝅥",
-      seconds: bpmCalculator.toSecondsPerBeat("half"),
+      seconds: bpmCalculator.durationFor("half", beatNote),
       value: "half"
     },
     {
-      beats: bpmCalculator.asWhole,
+      beats: bpmCalculator.numberOfBeatsFor("whole", beatNote),
       note: "𝅝",
-      seconds: bpmCalculator.toSecondsPerBeat("whole"),
+      seconds: bpmCalculator.durationFor("whole", beatNote),
       value: "whole"
     }
   ];
@@ -282,7 +282,7 @@ export const BPMCalculator: React.FC = () => {
               className="btn note-btn"
               key={value}
               onClick={() => {
-                setBeatNote(value as Note);
+                setBeatNote(value as NoteDuration);
               }}
             >
               {note}
