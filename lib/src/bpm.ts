@@ -58,17 +58,40 @@ export class BPM {
     throw new Error(`'${beatNote}' is not a recognized NoteDuration.`);
   }
 
+  private normalizeToQuarter(bpm: number, beatNote: NoteDuration) {
+    if (beatNote === "sixtyfourth") {
+      return bpm / 16;
+    } else if (beatNote === "thirtysecondth") {
+      return bpm / 8;
+    } else if (beatNote === "sixteenth") {
+      return bpm / 4;
+    } else if (beatNote === "eigth") {
+      return bpm / 2;
+    } else if (beatNote === "quarter") {
+      return bpm;
+    } else if (beatNote === "half") {
+      return bpm * 2;
+    } else if (beatNote === "whole") {
+      return bpm * 4;
+    }
+
+    throw new Error(`'${beatNote}' is not a recognized NoteDuration.`);
+  }
+
   /**
    * Returns the duration (in seconds) of the given note at this BPM.
    */
-  durationFor(aNote: NoteDuration = "quarter") {
-    return 60.0 / this.applyBeatNote(this.value, aNote);
+  durationFor(aNote: NoteDuration, beatNote: NoteDuration = "quarter") {
+    return 60.0 / this.numberOfBeatsFor(aNote, beatNote);
   }
 
   /**
    * Returns the number of beats per minute for the given note.
    */
-  numberOfBeatsFor(aNote: NoteDuration = "quarter") {
-    return this.applyBeatNote(this.value, aNote);
+  numberOfBeatsFor(aNote: NoteDuration, beatNote: NoteDuration = "quarter") {
+    return this.applyBeatNote(
+      this.normalizeToQuarter(this.value, beatNote),
+      aNote
+    );
   }
 }
