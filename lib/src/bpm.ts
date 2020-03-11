@@ -1,7 +1,7 @@
-/**
- * Types of musical notes
- */
-export type Note =
+import { Validate } from "@vapurrmaid/validate";
+
+export type NoteDuration =
+  | "sixtyfourth"
   | "thirtysecondth"
   | "sixteenth"
   | "eigth"
@@ -10,54 +10,37 @@ export type Note =
   | "whole";
 
 /**
- * Class representing the musical time concept of Beats Per Minute (BPM). In
- * many cases, BPM is applied to a quarter note.
+ * Class representing Beats Per Minute (BPM), a concept in musical timing. In
+ * many cases, BPM is applied to a quarter note, meaning that a quarter note
+ * is equivalent to 1 beat.
  *
  * @example
- *  const bpm = new BPM(100);
- *  bpm.asSixteenth // 400
- *  bpm.asEighth    // 200
- *  bpm.asQuarter   // 100
- *  bpm.asHalf      // 50
- *  bpm.asWhole     // 25
+ *  const bpm = new BPM(120)
+ *  bpm.value                       // 120
+ *  bpm.durationFor("quarter")      // 0.5
+ *  bpm.numberOfBeatsFor("quarter") // 120
+ *  bpm.numberOfBeatsFor("half")    // 60
  */
 export class BPM {
-  /**
-   * Value is normalized to number of quarter notes per minute, even if the
-   * class was constructed using a different beat note.
-   */
-  private readonly value: number;
+  /** Number of beats per minute (BPM) */
+  readonly value: number;
 
   /**
-   * Creates an object representing beats per minute whereby one beat is
-   * considered as the provided beatNote.
+   * Constructs a BPM object
    *
-   * @param bpm Numerical BPM
-   * @param beatNote Note that's considered 1 beat. Defaults to a quarter note.
+   * @param bpm An number greater than 0
+   * @throws An Error if bpm is less than or equal to 0
    */
-  constructor(bpm: number, beatNote: Note = "quarter") {
-    this.value = this.normalizeToQuarter(bpm, beatNote);
+  constructor(bpm: number) {
+    Validate.isTrue(
+      bpm > 0,
+      `bpm must be greater than 0. Instead received: ${bpm}`
+    );
+
+    this.value = bpm;
   }
 
-  private normalizeToQuarter(bpm: number, beatNote: Note) {
-    if (beatNote === "thirtysecondth") {
-      return bpm / 8;
-    } else if (beatNote === "sixteenth") {
-      return bpm / 4;
-    } else if (beatNote === "eigth") {
-      return bpm / 2;
-    } else if (beatNote === "quarter") {
-      return bpm;
-    } else if (beatNote === "half") {
-      return bpm * 2;
-    } else if (beatNote === "whole") {
-      return bpm * 4;
-    }
-
-    throw new Error(`beatNote '${beatNote}' is not a recognized note.`);
-  }
-
-  private applyBPMNote(bpm: number, beatNote: Note) {
+  private applyBeatNote(bpm: number, beatNote: NoteDuration) {
     if (beatNote === "thirtysecondth") {
       return bpm * 8;
     } else if (beatNote === "sixteenth") {
@@ -72,38 +55,20 @@ export class BPM {
       return bpm / 4;
     }
 
-    throw new Error(`beatNote '${beatNote}' is not a recognized note.`);
+    throw new Error(`'${beatNote}' is not a recognized NoteDuration.`);
   }
 
   /**
-   * Converts this BPM value to seconds per beat.
-   * @param beatNote Note that's considered 1 beat. Defaults to a quarter note.
+   * Returns the duration (in seconds) of the given note at this BPM.
    */
-  toSecondsPerBeat(beatNote: Note = "quarter"): number {
-    return 60.0 / this.applyBPMNote(this.value, beatNote);
+  durationFor(aNote: NoteDuration = "quarter") {
+    return 60.0 / this.applyBeatNote(this.value, aNote);
   }
 
-  get asThirtySecondth(): number {
-    return this.applyBPMNote(this.value, "thirtysecondth");
-  }
-
-  get asSixteenth(): number {
-    return this.applyBPMNote(this.value, "sixteenth");
-  }
-
-  get asEigth(): number {
-    return this.applyBPMNote(this.value, "eigth");
-  }
-
-  get asQuarter(): number {
-    return this.applyBPMNote(this.value, "quarter");
-  }
-
-  get asHalf(): number {
-    return this.applyBPMNote(this.value, "half");
-  }
-
-  get asWhole(): number {
-    return this.applyBPMNote(this.value, "whole");
+  /**
+   * Returns the number of beats per minute for the given note.
+   */
+  numberOfBeatsFor(aNote: NoteDuration = "quarter") {
+    return this.applyBeatNote(this.value, aNote);
   }
 }
