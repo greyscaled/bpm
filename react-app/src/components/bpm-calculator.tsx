@@ -48,31 +48,31 @@ export const BPMCalculator: React.FC = () => {
   const notes = [
     {
       beats: bpmCalculator.numberOfBeatsFor("sixteenth", beatNote),
-      note: "𝅘𝅥𝅯",
+      note: "&#119137;",
       seconds: bpmCalculator.durationFor("sixteenth", beatNote),
       value: "sixteenth"
     },
     {
       beats: bpmCalculator.numberOfBeatsFor("eigth", beatNote),
-      note: "𝅘𝅥𝅮",
+      note: "&#119136;",
       seconds: bpmCalculator.durationFor("eigth", beatNote),
       value: "eigth"
     },
     {
       beats: bpmCalculator.numberOfBeatsFor("quarter", beatNote),
-      note: "𝅘𝅥",
+      note: "&#119135;",
       seconds: bpmCalculator.durationFor("quarter", beatNote),
       value: "quarter"
     },
     {
       beats: bpmCalculator.numberOfBeatsFor("half", beatNote),
-      note: "𝅗𝅥",
+      note: "&#119134;",
       seconds: bpmCalculator.durationFor("half", beatNote),
       value: "half"
     },
     {
       beats: bpmCalculator.numberOfBeatsFor("whole", beatNote),
-      note: "𝅝",
+      note: "&#119133;",
       seconds: bpmCalculator.durationFor("whole", beatNote),
       value: "whole"
     }
@@ -287,7 +287,8 @@ export const BPMCalculator: React.FC = () => {
                 aria-label={`Number of beats for ${value} note at bpm ${bpm}`}
                 style={{ display: "inline-block", whiteSpace: "pre" }}
               >
-                {`${note} = ${beats}`}
+                <span dangerouslySetInnerHTML={{ __html: note }} />{" "}
+                {` = ${beats}`}
               </span>
 
               <span style={{ display: "inline-block" }}>
@@ -318,7 +319,7 @@ export const BPMCalculator: React.FC = () => {
                 setBeatNote(value as NoteDuration);
               }}
             >
-              {note}
+              <span dangerouslySetInnerHTML={{ __html: note }} />
             </button>
           ))}
         </div>
