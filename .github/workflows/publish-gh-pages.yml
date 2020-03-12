@@ -16,13 +16,13 @@ jobs:
         run: yarn && cd react-app && yarn
 
       - name: Build
-        run: yarn build
+        run: cd react-app && yarn run build
 
       - name: Deploy
         if: success()
         uses: crazy-max/ghaction-github-pages@v1.3.0
         with:
           target_branch: gh-pages
-          build_dir: build
+          build_dir: react-app/build
         env:
           GITHUB_PAT: ${{ secrets.GITHUB_PAT }}
