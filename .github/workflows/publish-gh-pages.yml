@@ -13,10 +13,7 @@ jobs:
         name: Checkout
 
       - name: Install
-        run: |
-          yarn,
-          cd react-app,
-          yarn
+        run: yarn && cd react-app && yarn
 
       - name: Build
         run: yarn build
