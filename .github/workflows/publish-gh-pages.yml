@@ -1,0 +1,31 @@
+name: Publish to GH Pages
+
+on:
+  push:
+    branches: [master]
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+        name: Checkout
+
+      - name: Install
+        run: |
+          yarn,
+          cd react-app,
+          yarn
+
+      - name: Build
+        run: yarn build
+
+      - name: Deploy
+        if: success()
+        uses: crazy-max/ghaction-github-pages@v1.3.0
+        with:
+          target_branch: gh-pages
+          build_dir: build
+        env:
+          GITHUB_PAT: ${{ secrets.GITHUB_PAT }}
