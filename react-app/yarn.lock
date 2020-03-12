@@ -1482,6 +1482,18 @@
     semver "^6.3.0"
     tsutils "^3.17.1"
 
+"@vapurrmaid/bpm@^0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@vapurrmaid/bpm/-/bpm-0.1.0.tgz#4d6b183a70a8a7ce548ddcf16af0a6755a1f5253"
+  integrity sha512-F6NYhom4NVdo5xw2iN4bt4jlogbafBQtEtou+fzaQ7SS+gt6r/p0irVjYgmBY5IEvE6HC1T364qQ/uVHT2oIdw==
+  dependencies:
+    "@vapurrmaid/validate" "^0.2.0"
+
+"@vapurrmaid/validate@^0.2.0":
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/@vapurrmaid/validate/-/validate-0.2.0.tgz#f4105fb9b52e6e9b391343b06eeddb257363f5a1"
+  integrity sha512-D3CIedLh6Xz8gwY6b0O/ikEaWqJi8jmEOXOcG6WUuydhZr7IKo6vkwlQPjkJZVqbWGUK/h1R8w0rPSM5JLPUog==
+
 "@webassemblyjs/ast@1.8.5":
   version "1.8.5"
   resolved "https://registry.yarnpkg.com/@webassemblyjs/ast/-/ast-1.8.5.tgz#51b1c5fe6576a34953bf4b253df9f0d490d9e359"
