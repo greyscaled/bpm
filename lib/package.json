@@ -32,7 +32,7 @@
     "release": "release-it"
   },
   "dependencies": {
-    "@vapurrmaid/validate": "^0.2.0"
+    "@vapurrmaid/validate": "^0.3.0"
   },
   "devDependencies": {
     "prettier": "^1.19.1",

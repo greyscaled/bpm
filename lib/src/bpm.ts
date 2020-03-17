@@ -32,8 +32,8 @@ export class BPM {
    * @throws An Error if bpm is less than or equal to 0
    */
   constructor(bpm: number) {
-    Validate.isTrue(
-      bpm > 0,
+    Validate.n(bpm).isGreaterThan(
+      0,
       `bpm must be greater than 0. Instead received: ${bpm}`
     );
 

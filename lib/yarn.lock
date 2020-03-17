@@ -216,10 +216,10 @@
   dependencies:
     "@types/node" "*"
 
-"@vapurrmaid/validate@^0.2.0":
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/@vapurrmaid/validate/-/validate-0.2.0.tgz#f4105fb9b52e6e9b391343b06eeddb257363f5a1"
-  integrity sha512-D3CIedLh6Xz8gwY6b0O/ikEaWqJi8jmEOXOcG6WUuydhZr7IKo6vkwlQPjkJZVqbWGUK/h1R8w0rPSM5JLPUog==
+"@vapurrmaid/validate@^0.3.0":
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/@vapurrmaid/validate/-/validate-0.3.0.tgz#e09c85ddd85232db7e18c8221ae4ec024be6d80d"
+  integrity sha512-RJEDC3cmA2hTSOLrm6M4cbXzWI5Y1IAvlWEYaYL+aJ72W5yirKO6QqnKWIqBxpzhW9+TjclMbSYJNdMda7EYTQ==
 
 ansi-align@^3.0.0:
   version "3.0.0"
