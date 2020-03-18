@@ -28,7 +28,6 @@ export const BPMCalculator: React.FC = () => {
   const [bpm, setBpm] = React.useState<number>(120);
   const [beatsPerMeasure, setBeatsPerMeasure] = React.useState<number>(4);
   const [beatNote, setBeatNote] = React.useState<NoteDuration>("quarter");
-  const [isPlaying, setIsPlaying] = React.useState<boolean>(false);
   const timerId = React.useRef<number | undefined>(undefined);
 
   const bpmCalculator = new BPM(bpm);
@@ -311,24 +310,7 @@ export const BPMCalculator: React.FC = () => {
         <legend>Playback Controls</legend>
 
         <div style={{ display: "flex", justifyContent: "center" }}>
-          <button
-            aria-label={`${
-              isPlaying ? "Stops" : "Starts"
-            } sounding the metronome at bpm ${bpm}`}
-            className={`playback-btn  ${
-              isPlaying ? "playback-btn--on" : "playback-btn--off"
-            }`}
-            onClick={() => {
-              if (isPlaying) {
-                clickTrack.stop();
-                return setIsPlaying(false);
-              }
-
-              clickTrack.start().then(() => {
-                setIsPlaying(true);
-              });
-            }}
-          ></button>
+          <PlaybackBtn />
         </div>
       </fieldset>
     </div>
@@ -356,6 +338,29 @@ const Beeper: React.FC = () => {
           ? "beeper--evenbeat"
           : "beeper--oddbeat"
       }`}
+    />
+  );
+};
+
+const PlaybackBtn: React.FC = () => {
+  const [isPlaying, setIsPlaying] = React.useState<boolean>(false);
+
+  return (
+    <button
+      aria-label={`${isPlaying ? "Stops" : "Starts"} sounding the metronome`}
+      className={`playback-btn  ${
+        isPlaying ? "playback-btn--on" : "playback-btn--off"
+      }`}
+      onClick={() => {
+        if (isPlaying) {
+          clickTrack.stop();
+          return setIsPlaying(false);
+        }
+
+        clickTrack.start().then(() => {
+          setIsPlaying(true);
+        });
+      }}
     />
   );
 };
