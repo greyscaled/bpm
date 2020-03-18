@@ -1,5 +1,5 @@
 import { BPM, NoteDuration } from "@vapurrmaid/bpm";
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 import "./bpm-calculator.css";
 import { ReactComponent as ArrowIcon } from "./arrow.svg";
@@ -25,10 +25,10 @@ function beatNoteToNumber(note: NoteDuration) {
 }
 
 export const BPMCalculator: React.FC = () => {
-  const [bpm, setBpm] = React.useState<number>(120);
-  const [beatsPerMeasure, setBeatsPerMeasure] = React.useState<number>(4);
-  const [beatNote, setBeatNote] = React.useState<NoteDuration>("quarter");
-  const timerId = React.useRef<number | undefined>(undefined);
+  const [bpm, setBpm] = useState<number>(120);
+  const [beatsPerMeasure, setBeatsPerMeasure] = useState<number>(4);
+  const [beatNote, setBeatNote] = useState<NoteDuration>("quarter");
+  const timerId = useRef<number | undefined>(undefined);
 
   const bpmCalculator = new BPM(bpm);
 
@@ -318,12 +318,12 @@ export const BPMCalculator: React.FC = () => {
 };
 
 const Beeper: React.FC = () => {
-  const [currentBeat, setCurrentBeat] = React.useState<number>(1);
+  const [currentBeat, setCurrentBeat] = useState<number>(1);
 
   // hook that updates currentBeat whenever the Metronome ticks. Must ensure
   // this hook has zero dependencies so that the callback only gets
   // registered once.
-  React.useEffect(() => {
+  useEffect(() => {
     clickTrack.addClickCallback(({ currentBeat }) =>
       setCurrentBeat(currentBeat)
     );
@@ -343,7 +343,7 @@ const Beeper: React.FC = () => {
 };
 
 const PlaybackBtn: React.FC = () => {
-  const [isPlaying, setIsPlaying] = React.useState<boolean>(false);
+  const [isPlaying, setIsPlaying] = useState<boolean>(false);
 
   return (
     <button
