@@ -11,6 +11,6 @@
     "pre-commit": "lint-staged"
   },
   "lint-staged": {
-    "*.md": "prettier --prose-wrap=always --print-width=80 --write"
+    "*.{json,md,svg,ts,tsx}": "prettier --prose-wrap=always --print-width=80 --write"
   }
 }
