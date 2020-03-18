@@ -29,21 +29,11 @@ export const BPMCalculator: React.FC = () => {
   const [beatsPerMeasure, setBeatsPerMeasure] = React.useState<number>(4);
   const [beatNote, setBeatNote] = React.useState<NoteDuration>("quarter");
   const [isPlaying, setIsPlaying] = React.useState<boolean>(false);
-  const [currentBeat, setCurrentBeat] = React.useState<number>(1);
   const timerId = React.useRef<number | undefined>(undefined);
 
   const bpmCalculator = new BPM(bpm);
 
   clickTrack.setBPM(bpm);
-
-  // hook that updates currentBeat whenever the Metronome ticks. Must ensure
-  // this hook has zero dependencies so that the callback only gets
-  // registered once.
-  React.useEffect(() => {
-    clickTrack.addClickCallback(({ currentBeat }) =>
-      setCurrentBeat(currentBeat)
-    );
-  }, []);
 
   const notes = [
     {
@@ -160,15 +150,7 @@ export const BPMCalculator: React.FC = () => {
               marginRight: "10px"
             }}
           >
-            <span
-              className={`beeper ${
-                currentBeat === 1
-                  ? "beeper--downbeat"
-                  : currentBeat % 2 === 0
-                  ? "beeper--evenbeat"
-                  : "beeper--oddbeat"
-              }`}
-            />
+            <Beeper />
           </div>
 
           <input
@@ -350,5 +332,30 @@ export const BPMCalculator: React.FC = () => {
         </div>
       </fieldset>
     </div>
+  );
+};
+
+const Beeper: React.FC = () => {
+  const [currentBeat, setCurrentBeat] = React.useState<number>(1);
+
+  // hook that updates currentBeat whenever the Metronome ticks. Must ensure
+  // this hook has zero dependencies so that the callback only gets
+  // registered once.
+  React.useEffect(() => {
+    clickTrack.addClickCallback(({ currentBeat }) =>
+      setCurrentBeat(currentBeat)
+    );
+  }, []);
+
+  return (
+    <span
+      className={`beeper ${
+        currentBeat === 1
+          ? "beeper--downbeat"
+          : currentBeat % 2 === 0
+          ? "beeper--evenbeat"
+          : "beeper--oddbeat"
+      }`}
+    />
   );
 };
