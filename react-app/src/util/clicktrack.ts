@@ -1,4 +1,4 @@
-import { Loop, MembraneSynth, Transport, start } from "tone";
+import { Draw, Loop, MembraneSynth, Transport, start } from "tone";
 
 /**
  * Arguments supplied by ClickTrack to functions registered as callbacks to
@@ -43,7 +43,7 @@ export class ClickTrack {
   private static readonly synth = new MembraneSynth().toDestination();
 
   /** Registered callbacks to be fired on each click event */
-  private readonly callbacks: ClickCbFunction[];
+  private callback: ClickCbFunction;
 
   /**
    * Number of beats in a measure. There are 4 beats per measure in 4/4.
@@ -61,8 +61,13 @@ export class ClickTrack {
 
   constructor() {
     this.loop = new Loop();
+
+    // the loop's callback is what's called at each transport timing event
     this.loop.callback = this.createLoopCallback();
-    this.callbacks = [];
+
+    // originally set this.callback to a no-op instead of adding a conditional
+    // check in the loop
+    this.callback = () => {};
   }
 
   /**
@@ -73,21 +78,25 @@ export class ClickTrack {
    */
   private createLoopCallback = () => {
     return (time: number) => {
-      this.callbacks.forEach(cb =>
-        cb({
-          currentBeat: this._currentBeat,
+      // need a reference to the currentBeat so that the proper one is used
+      // in the scheduled callbacks
+      const currentBeat = this._currentBeat;
+
+      Draw.schedule(() => {
+        this.callback({
+          currentBeat: currentBeat,
           beatsPerMeasure: this._beatsPerMeasure,
           time
-        })
-      );
+        });
+      }, time);
 
       ClickTrack.synth.triggerAttackRelease(
-        this._currentBeat === 1 ? "G3" : "C3",
+        currentBeat === 1 ? "G#3" : "G3",
         "4n",
         time
       );
 
-      const nextBeat = this._currentBeat + 1;
+      const nextBeat = currentBeat + 1;
 
       this._currentBeat = nextBeat <= this._beatsPerMeasure ? nextBeat : 1;
     };
@@ -98,7 +107,7 @@ export class ClickTrack {
    * 'click' event emitted by this ClickTrack.
    */
   addClickCallback(fn: ClickCbFunction) {
-    this.callbacks.push(fn);
+    this.callback = fn;
   }
 
   /**
@@ -106,13 +115,9 @@ export class ClickTrack {
    * stated as 'increasing tempo') speeds up time (ie: subsequent 'clicks'
    * will be closer together).
    *
-   * @throws Error if bpm is not an integer or outside the range (0, 220).
+   * @throws Error if bpm is outside the range (0, 220).
    */
   setBPM(bpm: number) {
-    if (!Number.isInteger(bpm)) {
-      throw new Error(`bpm must be an integer. Received: ${bpm}`);
-    }
-
     if (bpm < 0 || bpm > 220) {
       throw new Error(`bpm must be in the range (0, 220). Received: ${bpm}`);
     }
@@ -154,8 +159,8 @@ export class ClickTrack {
     return new Promise((resolve, reject) => {
       start()
         .then(() => {
-          Transport.start();
-          this.loop.start(0);
+          Transport.start("+0.1");
+          this.loop.start();
           resolve();
         })
         .catch(() => {
@@ -169,7 +174,7 @@ export class ClickTrack {
    */
   stop() {
     Transport.pause();
-    this.loop.stop(0);
+    this.loop.stop();
   }
 
   /**
