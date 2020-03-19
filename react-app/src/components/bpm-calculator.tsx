@@ -3,6 +3,11 @@ import React, { useEffect, useRef, useState } from "react";
 
 import "./bpm-calculator.css";
 import { ReactComponent as ArrowIcon } from "./arrow.svg";
+import { ReactComponent as EighthNoteIcon } from "./eighth.svg";
+import { ReactComponent as HalfNoteIcon } from "./half.svg";
+import { ReactComponent as QuarterNoteIcon } from "./quarter.svg";
+import { ReactComponent as SixteenthNoteIcon } from "./sixteenth.svg";
+import { ReactComponent as WholeNoteIcon } from "./whole.svg";
 import { ClickTrack } from "../util/clicktrack";
 import { formatDecimal } from "../util/strings";
 
@@ -37,31 +42,31 @@ export const BPMCalculator: React.FC = () => {
   const notes = [
     {
       beats: bpmCalculator.numberOfBeatsFor("sixteenth", beatNote),
-      note: "&#119137;",
+      note: <SixteenthNoteIcon className="note-icon" />,
       seconds: bpmCalculator.durationFor("sixteenth", beatNote),
       value: "sixteenth"
     },
     {
       beats: bpmCalculator.numberOfBeatsFor("eigth", beatNote),
-      note: "&#119136;",
+      note: <EighthNoteIcon className="note-icon" />,
       seconds: bpmCalculator.durationFor("eigth", beatNote),
       value: "eigth"
     },
     {
       beats: bpmCalculator.numberOfBeatsFor("quarter", beatNote),
-      note: "&#119135;",
+      note: <QuarterNoteIcon className="note-icon" />,
       seconds: bpmCalculator.durationFor("quarter", beatNote),
       value: "quarter"
     },
     {
       beats: bpmCalculator.numberOfBeatsFor("half", beatNote),
-      note: "&#119134;",
+      note: <HalfNoteIcon className="note-icon" />,
       seconds: bpmCalculator.durationFor("half", beatNote),
       value: "half"
     },
     {
       beats: bpmCalculator.numberOfBeatsFor("whole", beatNote),
-      note: "&#119133;",
+      note: <WholeNoteIcon className="note-icon" />,
       seconds: bpmCalculator.durationFor("whole", beatNote),
       value: "whole"
     }
@@ -268,7 +273,7 @@ export const BPMCalculator: React.FC = () => {
                 aria-label={`Number of beats for ${value} note at bpm ${bpm}`}
                 style={{ display: "inline-block", whiteSpace: "pre" }}
               >
-                <span dangerouslySetInnerHTML={{ __html: note }} />{" "}
+                {note}
                 {` = ${beats}`}
               </span>
 
@@ -300,7 +305,7 @@ export const BPMCalculator: React.FC = () => {
                 setBeatNote(value as NoteDuration);
               }}
             >
-              <span dangerouslySetInnerHTML={{ __html: note }} />
+              {note}
             </button>
           ))}
         </div>
