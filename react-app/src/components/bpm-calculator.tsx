@@ -294,7 +294,10 @@ export const BPMCalculator: React.FC = () => {
         </section>
       </fieldset>
 
-      <fieldset className="fieldset" style={{ marginTop: "15px" }}>
+      <fieldset
+        className="fieldset"
+        style={{ marginTop: "15px", padding: "0 5px" }}
+      >
         <legend>Beat Note Controls</legend>
 
         <div style={{ display: "flex", justifyContent: "space-evenly" }}>
@@ -313,7 +316,7 @@ export const BPMCalculator: React.FC = () => {
         </div>
       </fieldset>
 
-      <fieldset className="fieldset" style={{ marginTop: "50px" }}>
+      <fieldset className="fieldset" style={{ marginTop: "45px" }}>
         <legend>Playback Controls</legend>
 
         <div style={{ display: "flex", justifyContent: "center" }}>
