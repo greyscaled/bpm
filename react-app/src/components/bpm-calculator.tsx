@@ -1,5 +1,5 @@
 import { BPM, NoteDuration } from "@vapurrmaid/bpm";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, /* useRef, */ useState } from "react";
 
 import "./bpm-calculator.css";
 import { ReactComponent as ArrowIcon } from "./arrow.svg";
@@ -33,7 +33,7 @@ export const BPMCalculator: React.FC = () => {
   const [bpm, setBpm] = useState<number>(120);
   const [beatsPerMeasure, setBeatsPerMeasure] = useState<number>(4);
   const [beatNote, setBeatNote] = useState<NoteDuration>("quarter");
-  const timerId = useRef<number | undefined>(undefined);
+  // const timerId = useRef<number | undefined>(undefined);
 
   const bpmCalculator = new BPM(bpm);
 
@@ -77,14 +77,14 @@ export const BPMCalculator: React.FC = () => {
       setBpm(bpm - 1);
     }
 
-    timerId.current = window.setInterval(() => {
-      setBpm(bpm => {
-        if (bpm - 1 >= ClickTrack.MIN_BEATS_PER_MINUTE) {
-          return bpm - 1;
-        }
-        return bpm;
-      });
-    }, 200);
+    // timerId.current = window.setInterval(() => {
+    //   setBpm(bpm => {
+    //     if (bpm - 1 >= ClickTrack.MIN_BEATS_PER_MINUTE) {
+    //       return bpm - 1;
+    //     }
+    //     return bpm;
+    //   });
+    // }, 200);
   };
 
   const handleIncreaseBpm = () => {
@@ -92,19 +92,19 @@ export const BPMCalculator: React.FC = () => {
       setBpm(bpm + 1);
     }
 
-    timerId.current = window.setInterval(() => {
-      setBpm(bpm => {
-        if (bpm + 1 <= ClickTrack.MAX_BEATS_PER_MINUTE) {
-          return bpm + 1;
-        }
-        return bpm;
-      });
-    }, 200);
+    // timerId.current = window.setInterval(() => {
+    //   setBpm(bpm => {
+    //     if (bpm + 1 <= ClickTrack.MAX_BEATS_PER_MINUTE) {
+    //       return bpm + 1;
+    //     }
+    //     return bpm;
+    //   });
+    // }, 200);
   };
 
-  const clearTimer = () => {
-    window.clearInterval(timerId.current);
-  };
+  // const clearTimer = () => {
+  //   window.clearInterval(timerId.current);
+  // };
 
   return (
     <div className="calculator">
@@ -124,22 +124,24 @@ export const BPMCalculator: React.FC = () => {
             <button
               aria-label="Decrease beats per minute"
               className="btn"
-              onTouchStart={handleDecreaseBpm}
-              onTouchEnd={clearTimer}
-              onMouseDown={handleDecreaseBpm}
-              onMouseUp={clearTimer}
-              onMouseLeave={clearTimer}
+              onClick={handleDecreaseBpm}
+              // onTouchStart={handleDecreaseBpm}
+              // onTouchEnd={clearTimer}
+              // onMouseDown={handleDecreaseBpm}
+              // onMouseUp={clearTimer}
+              // onMouseLeave={clearTimer}
             >
               <ArrowIcon className="arrow arrow--left" />
             </button>
             <button
               aria-label="Increase beats per minute"
               className="btn"
-              onTouchStart={handleIncreaseBpm}
-              onTouchEnd={clearTimer}
-              onMouseDown={handleIncreaseBpm}
-              onMouseUp={clearTimer}
-              onMouseLeave={clearTimer}
+              onClick={handleIncreaseBpm}
+              // onTouchStart={handleIncreaseBpm}
+              // onTouchEnd={clearTimer}
+              // onMouseDown={handleIncreaseBpm}
+              // onMouseUp={clearTimer}
+              // onMouseLeave={clearTimer}
               style={{ marginLeft: "5px" }}
             >
               <ArrowIcon className="arrow arrow--right" />
