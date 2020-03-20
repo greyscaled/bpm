@@ -1,0 +1,39 @@
+.header {
+  color: #9b102a;
+  font-family: "Orbitron", sans-serif;
+  font-weight: normal;
+  letter-spacing: 5px;
+}
+
+@media screen and (max-width: 400px) {
+  .header {
+    letter-spacing: normal;
+  }
+}
+
+@media screen and (min-width: 500px) {
+  .header,
+  .footer {
+    text-align: center;
+  }
+
+  .main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+.article {
+  color: white;
+}
+
+.footer {
+  color: white;
+}
+
+.link,
+.link:visited {
+  color: #cc4a62;
+  letter-spacing: 1px;
+}
