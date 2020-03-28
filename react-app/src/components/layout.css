@@ -1,8 +1,25 @@
 .header {
+  align-items: center;
   color: #9b102a;
+  display: flex;
   font-family: "Orbitron", sans-serif;
   font-weight: normal;
+  justify-content: center;
   letter-spacing: 5px;
+}
+
+.pwa-install-btn {
+  background-color: transparent;
+  border: 1px solid #cc4a62;
+  border-radius: 5px;
+  color: #cc4a62;
+  cursor: pointer;
+  margin-left: 8px;
+  padding: 5px;
+}
+.pwa-install-btn:hover {
+  background-color: rgba(204, 74, 98, 0.5);
+  color: #eee;
 }
 
 @media screen and (max-width: 400px) {
@@ -12,7 +29,6 @@
 }
 
 @media screen and (min-width: 500px) {
-  .header,
   .footer {
     text-align: center;
   }
