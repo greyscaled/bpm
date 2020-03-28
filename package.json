@@ -8,7 +8,9 @@
     "prettier": "^1.19.1"
   },
   "husky": {
-    "pre-commit": "lint-staged"
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
   },
   "lint-staged": {
     "*.{json,md,svg,ts,tsx}": "prettier --prose-wrap=always --print-width=80 --write"
