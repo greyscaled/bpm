@@ -8,13 +8,13 @@
       "type": "image/png"
     },
     {
-      "src": "bpmcalc192.jpg",
-      "type": "image/jpeg",
+      "src": "bpmcalc192.png",
+      "type": "image/png",
       "sizes": "192x192"
     },
     {
-      "src": "bpmcalc512.jpg",
-      "type": "image/jpeg",
+      "src": "bpmcalc512.png",
+      "type": "image/png",
       "sizes": "512x512"
     }
   ],
