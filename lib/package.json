@@ -43,12 +43,12 @@
     "git": {
       "commitArgs": "--gpg-sign",
       "commitMessage": ":rocket: v${version}",
-      "tagAnnotation": "v${version}",
+      "tagAnnotation": "@vapurrmaid/bpm@${version}",
       "tagArgs": "--sign"
     },
     "github": {
       "release": true,
-      "releaseName": "Release ${version}",
+      "releaseName": "Release bpm ${version}",
       "tokenRef": "RELEASE_IT_GITHUB_TOKEN"
     }
   }
