@@ -1,6 +1,6 @@
 {
   "name": "@vapurrmaid/bpm",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Lightweight package for working with beats per minute (BPM) calculations.",
   "keywords": [
     "bpm",
