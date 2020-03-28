@@ -1,11 +1,12 @@
 {
-  "name": "bpm-calculator",
+  "name": "@vapurrmaid/bpm-react-app",
   "version": "0.1.0",
   "private": true,
   "homepage": "https://vapurrmaid.ca/bpm",
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build"
+    "build": "react-scripts build",
+    "release": "release-it"
   },
   "dependencies": {
     "@vapurrmaid/bpm": "^0.1.0",
@@ -18,6 +19,7 @@
     "@types/react": "^16.9.0",
     "@types/react-dom": "^16.9.0",
     "react-scripts": "3.4.0",
+    "release-it": "^13.4.0",
     "typescript": "~3.7.2"
   },
   "browserslist": {
@@ -31,5 +33,21 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "release-it": {
+    "git": {
+      "commitArgs": "--gpg-sign",
+      "commitMessage": ":rocket: ${version}",
+      "tagAnnotation": "@vapurrmaid/bpm-react-app@${version}",
+      "tagArgs": "--sign"
+    },
+    "github": {
+      "release": true,
+      "releaseName": "Release react-app ${version}",
+      "tokenRef": "RELEASE_IT_GITHUB_TOKEN"
+    },
+    "npm": {
+      "publish": false
+    }
   }
 }
