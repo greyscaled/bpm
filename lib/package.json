@@ -28,28 +28,12 @@
   },
   "scripts": {
     "build": "tsc",
-    "clean": "rm -rf dist",
-    "release": "release-it"
+    "clean": "rm -rf dist"
   },
   "dependencies": {
     "@vapurrmaid/validate": "^0.3.0"
   },
   "devDependencies": {
-    "prettier": "^1.19.1",
-    "release-it": "^13.0.2",
     "typescript": "^3.8.3"
-  },
-  "release-it": {
-    "git": {
-      "commitArgs": "--gpg-sign",
-      "commitMessage": ":rocket: v${version}",
-      "tagAnnotation": "@vapurrmaid/bpm@${version}",
-      "tagArgs": "--sign"
-    },
-    "github": {
-      "release": true,
-      "releaseName": "Release bpm ${version}",
-      "tokenRef": "RELEASE_IT_GITHUB_TOKEN"
-    }
   }
 }
