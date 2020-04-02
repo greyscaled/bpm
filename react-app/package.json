@@ -5,22 +5,20 @@
   "homepage": "https://vapurrmaid.ca/bpm",
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
-    "release": "release-it"
+    "build": "react-scripts build"
   },
   "dependencies": {
-    "@vapurrmaid/bpm": "^0.1.0",
-    "react": "^16.13.0",
-    "react-dom": "^16.13.0",
-    "tone": "^14.5.40"
+    "@vapurrmaid/bpm": "^0.1.2",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "tone": "14.5.43"
   },
   "devDependencies": {
-    "@types/node": "^12.0.0",
-    "@types/react": "^16.9.0",
-    "@types/react-dom": "^16.9.0",
-    "react-scripts": "3.4.0",
-    "release-it": "^13.4.0",
-    "typescript": "~3.7.2"
+    "@types/node": "^13.9.8",
+    "@types/react": "^16.9.31",
+    "@types/react-dom": "^16.9.6",
+    "react-scripts": "^3.4.1",
+    "typescript": "^3.8.3"
   },
   "browserslist": {
     "production": [
@@ -33,21 +31,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "release-it": {
-    "git": {
-      "commitArgs": "--gpg-sign",
-      "commitMessage": ":rocket: ${version}",
-      "tagAnnotation": "@vapurrmaid/bpm-react-app@${version}",
-      "tagArgs": "--sign"
-    },
-    "github": {
-      "release": true,
-      "releaseName": "Release react-app ${version}",
-      "tokenRef": "RELEASE_IT_GITHUB_TOKEN"
-    },
-    "npm": {
-      "publish": false
-    }
   }
 }
