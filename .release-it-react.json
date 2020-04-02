@@ -1,0 +1,17 @@
+{
+  "git": {
+    "commitArgs": "--gpg-sign",
+    "commitMessage": "🚀 @vapurrmaid/bpm-react-app ${version}",
+    "tagAnnotation": "@vapurrmaid/bpm-react-app@${version}",
+    "tagArgs": "--sign",
+    "tagName": "vapurrmaid/bpm-react-app@${version}"
+  },
+  "github": {
+    "release": true,
+    "releaseName": "Release @vapurrmaid/bpm-react-app ${version}",
+    "tokenRef": "RELEASE_IT_GITHUB_TOKEN"
+  },
+  "npm": {
+    "publish": false
+  }
+}

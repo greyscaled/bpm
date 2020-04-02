@@ -1,0 +1,14 @@
+{
+  "git": {
+    "commitArgs": "--gpg-sign",
+    "commitMessage": "🚀 @vapurrmaid/bpm ${version}",
+    "tagAnnotation": "@vapurrmaid/bpm@${version}",
+    "tagArgs": "--sign",
+    "tagName": "vapurrmaid/bpm@${version}"
+  },
+  "github": {
+    "release": true,
+    "releaseName": "Release @vapurrmaid/bpm ${version}",
+    "tokenRef": "RELEASE_IT_GITHUB_TOKEN"
+  }
+}
