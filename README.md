@@ -30,37 +30,7 @@ Although not `export`ed, a useful reference module for building a metronome (or
 clicktrack) is in the `react-app` at
 [src/util/clicktrack.ts](https://github.com/vapurrmaid/bpm/blob/master/react-app/src/util/clicktrack.ts).
 
-## Development
+## Wiki
 
-### Installation
-
-There are 3 packages to install:
-
-- root-level packages (format, lint etc)
-- `lib/` package
-- `react-app/` package
-
-```bash
-yarn
-cd lib && yarn
-cd react-app && yarn
-```
-
-### Linking
-
-If changes are made to `lib/` that are not deployed, the package can be linked:
-
-```bash
-cd lib
-yarn link
-
-cd react-app
-yarn link @vapurrmaid/bpm
-```
-
-### React HMR
-
-```bash
-cd react-app
-yarn start
-```
+For more information regarding development and releasing, see the
+[wiki](https://github.com/vapurrmaid/bpm/wiki)
