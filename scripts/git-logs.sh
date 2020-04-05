@@ -17,15 +17,15 @@ function usage() {
 pushd $(git rev-parse --show-toplevel)
   if [ "${1:-}" == "lib" ]; then
     LATEST_COMMIT=$(git log -1 --pretty=format:"%h" lib)
+    LATEST_TAG=$(git describe --abbrev=0 --match="vapurrmaid/bpm@*" $LATEST_COMMIT)
   elif [ "${1:-}" == "react-app" ]; then
     LATEST_COMMIT=$(git log -1 --pretty=format:"%h" react-app)
+    LATEST_TAG=$(git describe --abbrev=0 --match="vapurrmaid/bpm-react-app*" $LATEST_COMMIT)
   else
     echo "Unknown argument"
     usage
     exit 1 
   fi
-
-  LATEST_TAG=$(git describe --abbrev=0 $LATEST_COMMIT)
 
   echo "Latest commit:    $LATEST_COMMIT"
   echo "Latest tag   :    $LATEST_TAG"
