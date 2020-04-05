@@ -67,6 +67,7 @@ export class ClickTrack {
 
     // originally set this.callback to a no-op instead of adding a conditional
     // check in the loop
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
     this.callback = () => {};
   }
 
