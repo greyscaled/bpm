@@ -1,12 +1,23 @@
 {
   "name": "bpm-calculator-root",
   "private": true,
-  "scripts": {},
+  "scripts": {
+    "lint:lib": "eslint --color --ext=ts lib",
+    "lint:react": "eslint --color --ext=ts,tsx react-app"
+  },
   "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^2.26.0",
+    "@typescript-eslint/parser": "^2.26.0",
+    "eslint": "^6.8.0",
+    "eslint-plugin-import": "^2.20.2",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-react": "^7.19.0",
+    "eslint-plugin-react-hooks": "^3.0.0",
     "husky": "^4.2.3",
     "lint-staged": "^10.1.2",
     "prettier": "^2.0.2",
-    "release-it": "^13.5.1"
+    "release-it": "^13.5.1",
+    "typescript": "^3.8.3"
   },
   "husky": {
     "hooks": {
@@ -14,6 +25,11 @@
     }
   },
   "lint-staged": {
-    "*.{json,md,svg,ts,tsx}": "prettier --prose-wrap=always --print-width=80 --write"
+    "*.{css,html,json,svg,yaml,yml}": "prettier --print-width=80 --write",
+    "*.md": "prettier --prose-wrap=always --print-width=80 --write",
+    "*.ts,tsx": [
+      "eslint --color",
+      "prettier --print-width=80 --write"
+    ]
   }
 }
