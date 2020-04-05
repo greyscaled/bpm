@@ -1,5 +1,5 @@
 const decimalFormatter = new Intl.NumberFormat("en", {
-  maximumSignificantDigits: 3
+  maximumSignificantDigits: 3,
 });
 
 export function formatDecimal(n: number) {
