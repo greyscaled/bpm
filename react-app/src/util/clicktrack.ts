@@ -87,7 +87,7 @@ export class ClickTrack {
         this.callback({
           currentBeat: currentBeat,
           beatsPerMeasure: this._beatsPerMeasure,
-          time
+          time,
         });
       }, time);
 

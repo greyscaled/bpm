@@ -44,32 +44,32 @@ export const BPMCalculator: React.FC = () => {
       beats: bpmCalculator.numberOfBeatsFor("sixteenth", beatNote),
       note: <SixteenthNoteIcon className="note-icon" />,
       seconds: bpmCalculator.durationFor("sixteenth", beatNote),
-      value: "sixteenth"
+      value: "sixteenth",
     },
     {
       beats: bpmCalculator.numberOfBeatsFor("eigth", beatNote),
       note: <EighthNoteIcon className="note-icon" />,
       seconds: bpmCalculator.durationFor("eigth", beatNote),
-      value: "eigth"
+      value: "eigth",
     },
     {
       beats: bpmCalculator.numberOfBeatsFor("quarter", beatNote),
       note: <QuarterNoteIcon className="note-icon" />,
       seconds: bpmCalculator.durationFor("quarter", beatNote),
-      value: "quarter"
+      value: "quarter",
     },
     {
       beats: bpmCalculator.numberOfBeatsFor("half", beatNote),
       note: <HalfNoteIcon className="note-icon" />,
       seconds: bpmCalculator.durationFor("half", beatNote),
-      value: "half"
+      value: "half",
     },
     {
       beats: bpmCalculator.numberOfBeatsFor("whole", beatNote),
       note: <WholeNoteIcon className="note-icon" />,
       seconds: bpmCalculator.durationFor("whole", beatNote),
-      value: "whole"
-    }
+      value: "whole",
+    },
   ];
 
   const handleDecreaseBpm = () => {
@@ -117,7 +117,7 @@ export const BPMCalculator: React.FC = () => {
             flex: "1 0 auto",
             flexDirection: "row",
             justifyContent: "space-between",
-            padding: "5px"
+            padding: "5px",
           }}
         >
           <div style={{ alignItems: "center", display: "inline-flex" }}>
@@ -153,7 +153,7 @@ export const BPMCalculator: React.FC = () => {
               alignSelf: "center",
               display: "inline-flex",
               marginLeft: "auto",
-              marginRight: "10px"
+              marginRight: "10px",
             }}
           >
             <Beeper />
@@ -175,7 +175,7 @@ export const BPMCalculator: React.FC = () => {
             style={{
               display: "flex",
               justifyContent: "flex-end",
-              marginRight: "14px"
+              marginRight: "14px",
             }}
           >
             <label className="label" htmlFor="bpmDisplay">
@@ -193,7 +193,7 @@ export const BPMCalculator: React.FC = () => {
             style={{
               display: "flex",
               flexDirection: "column",
-              margin: "auto 0"
+              margin: "auto 0",
             }}
           >
             <button
@@ -229,7 +229,7 @@ export const BPMCalculator: React.FC = () => {
               alignItems: "center",
               border: "2px inset",
               display: "flex",
-              flexDirection: "column"
+              flexDirection: "column",
             }}
           >
             <label htmlFor="beatsPerMeasureDisplay" style={{ display: "none" }}>
@@ -268,7 +268,7 @@ export const BPMCalculator: React.FC = () => {
               style={{
                 display: "flex",
                 justifyContent: "space-between",
-                padding: "0 5px"
+                padding: "0 5px",
               }}
             >
               <span
