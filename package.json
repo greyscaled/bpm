@@ -2,6 +2,9 @@
   "name": "bpm-calculator-root",
   "private": true,
   "scripts": {
+    "format:check": "prettier --check .",
+    "format:write": "prettier --write .",
+    "lint": "yarn lint:lib && yarn lint:react",
     "lint:lib": "eslint --color --ext=ts lib",
     "lint:react": "eslint --color --ext=ts,tsx react-app"
   },
