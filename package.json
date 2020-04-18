@@ -28,7 +28,7 @@
     }
   },
   "lint-staged": {
-    "*.{css,html,json,svg,yaml,yml}": "prettier --print-width=80 --write",
+    "*.{css,html,json,yaml,yml}": "prettier --print-width=80 --write",
     "*.md": "prettier --prose-wrap=always --print-width=80 --write",
     "*.ts,tsx": [
       "eslint --color",
