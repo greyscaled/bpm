@@ -1,0 +1,20 @@
+@import "vars.scss";
+
+* {
+  box-sizing: border-box;
+}
+body {
+  background-color: $darkBlue;
+  font-family: $fontText;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  margin: 0 auto;
+  max-width: 1200px;
+  min-width: 320px;
+  min-height: 100vh;
+  padding: 20px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
