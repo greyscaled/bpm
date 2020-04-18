@@ -116,24 +116,24 @@ export const BPMCalculator: React.FC = () => {
 
           <div className="calculator-bpm-btns calculator-top-btn-group">
             <button
-              aria-label="Decrease beats per minute"
-              className="calculator-top-btn"
-              onClick={handleDecreaseBpm}
-              // onTouchStart={handleDecreaseBpm}
-              // onTouchEnd={clearTimer}
-              // onMouseDown={handleDecreaseBpm}
-              // onMouseUp={clearTimer}
-              // onMouseLeave={clearTimer}
-            >
-              <ArrowIcon className="arrow arrow--up" />
-            </button>
-            <button
               aria-label="Increase beats per minute"
               className="calculator-top-btn"
               onClick={handleIncreaseBpm}
               // onTouchStart={handleIncreaseBpm}
               // onTouchEnd={clearTimer}
               // onMouseDown={handleIncreaseBpm}
+              // onMouseUp={clearTimer}
+              // onMouseLeave={clearTimer}
+            >
+              <ArrowIcon className="arrow arrow--up" />
+            </button>
+            <button
+              aria-label="Decrease beats per minute"
+              className="calculator-top-btn"
+              onClick={handleDecreaseBpm}
+              // onTouchStart={handleDecreaseBpm}
+              // onTouchEnd={clearTimer}
+              // onMouseDown={handleDecreaseBpm}
               // onMouseUp={clearTimer}
               // onMouseLeave={clearTimer}
             >
@@ -293,6 +293,11 @@ const Beeper: React.FC = () => {
   return (
     <>
       <span
+        className={`beeper beeper--downbeat ${
+          currentBeat === 1 ? "on" : "off"
+        }`}
+      />
+      <span
         className={`beeper beeper--upbeat ${
           currentBeat % 2 === 0 ? "on" : "off"
         }`}
@@ -300,11 +305,6 @@ const Beeper: React.FC = () => {
       <span
         className={`beeper beeper--oddbeat ${
           currentBeat !== 1 && currentBeat % 2 !== 0 ? "on" : "off"
-        }`}
-      />
-      <span
-        className={`beeper beeper--downbeat ${
-          currentBeat === 1 ? "on" : "off"
         }`}
       />
     </>

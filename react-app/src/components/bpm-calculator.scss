@@ -1,11 +1,12 @@
 @import "../vars.scss";
 
-$lcdSize: 50px;
+$mobileBreak: 460px;
 
+$btnSize: 50px;
 $fieldsetSpacing: 10px;
 
 @mixin lcd {
-  height: $lcdSize;
+  height: $btnSize;
   padding: 6px;
 
   border: 0;
@@ -14,13 +15,11 @@ $fieldsetSpacing: 10px;
   box-shadow: inset 0 0 6px rgba($lcd, 0.2), 0 0 12px lighten($darkBlue, 3%);
 
   font-family: "Cutive Mono", sans-serif;
-  font-size: 40px;
+  font-size: 38px;
   color: $lcd;
   text-shadow: 0 0 4px rgba($lcd, 0.8);
   text-align: right;
 }
-
-$blackBtnSize: $lcdSize;
 
 @mixin blackBtnGroup($vertical: false) {
   box-shadow: 0 0 0 2px #121212;
@@ -29,9 +28,9 @@ $blackBtnSize: $lcdSize;
   background-clip: border-box;
 
   @if ($vertical) {
-    width: $blackBtnSize;
+    width: $btnSize;
   } @else {
-    height: $blackBtnSize;
+    height: $btnSize;
   }
 }
 
@@ -45,8 +44,8 @@ $blackBtnSize: $lcdSize;
   align-items: center;
   justify-content: center;
   flex: 1;
-  width: $blackBtnSize;
-  height: $blackBtnSize;
+  width: $btnSize;
+  height: $btnSize;
 
   border-radius: 2px;
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2),
@@ -107,14 +106,18 @@ $blackBtnSize: $lcdSize;
 
 // Calculator
 .calculator {
-  width: 460px;
-  max-width: 100%;
+  width: 100%;
+  max-width: 460px;
 
   padding: 28px;
 
   border-radius: 10px;
   background: darken($darkBlue, 2%);
   box-shadow: inset 0 0 20px darken($darkBlue, 6%);
+
+  @media (max-width: $mobileBreak) {
+    padding: 12px;
+  }
 
   // Fieldsets
   .fieldset {
@@ -134,18 +137,20 @@ $blackBtnSize: $lcdSize;
     display: flex;
     justify-content: space-between;
 
+    @media (max-width: $mobileBreak) {
+      flex-direction: column;
+    }
+
     &-btn-group {
       @include blackBtnGroup($vertical: true);
-
-      height: $blackBtnSize * 2;
     }
     &-btn {
       @include blackBtn($vertical: true);
 
-      $btnSize: 24px;
+      $arrowSize: 24px;
       svg {
-        width: $btnSize;
-        height: $btnSize;
+        width: $arrowSize;
+        height: $arrowSize;
       }
     }
   }
@@ -156,6 +161,11 @@ $blackBtnSize: $lcdSize;
 
     .calculator-top-btn-group {
       margin-right: $fieldsetSpacing;
+
+      @media (max-width: $mobileBreak) {
+        order: 2;
+        margin: 0 0 0 auto;
+      }
     }
 
     &-displays {
@@ -185,6 +195,10 @@ $blackBtnSize: $lcdSize;
 
     .calculator-top-btn-group {
       margin-left: $fieldsetSpacing;
+
+      @media (max-width: $mobileBreak) {
+        margin-left: auto;
+      }
     }
 
     &-lcd {
@@ -262,7 +276,7 @@ $blackBtnSize: $lcdSize;
   height: auto;
   width: 100%;
 
-  padding: 12px;
+  padding: 8px 12px;
 
   $noteSize: 20px;
 
@@ -316,7 +330,6 @@ $blackBtnSize: $lcdSize;
 
   display: flex;
   align-self: center;
-  width: $blackBtnSize * 2 + 20px;
 
   .playback-btn {
     @include blackBtn;
