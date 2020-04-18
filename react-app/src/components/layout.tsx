@@ -1,7 +1,7 @@
 import React from "react";
 
-import { usePWA } from "../contexts/pwa";
 import "./layout.scss";
+import { usePWA } from "../contexts/pwa";
 
 export const Layout: React.FC = ({ children }) => {
   const pwaEvt = usePWA();
