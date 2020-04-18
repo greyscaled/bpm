@@ -8,10 +8,9 @@ import { ReactComponent as HalfNoteIcon } from "./half.svg";
 import { ReactComponent as QuarterNoteIcon } from "./quarter.svg";
 import { ReactComponent as SixteenthNoteIcon } from "./sixteenth.svg";
 import { ReactComponent as WholeNoteIcon } from "./whole.svg";
+import { useClickTrackRef } from "../contexts/clicktrack";
 import { ClickTrack } from "../util/clicktrack";
 import { formatDecimal } from "../util/strings";
-
-const clickTrack = new ClickTrack();
 
 function beatNoteToNumber(note: NoteDuration) {
   if (note === "thirtysecondth") {
@@ -30,6 +29,7 @@ function beatNoteToNumber(note: NoteDuration) {
 }
 
 export const BPMCalculator: React.FC = () => {
+  const clickTrack = useClickTrackRef();
   const [bpm, setBpm] = useState<number>(120);
   const [beatsPerMeasure, setBeatsPerMeasure] = useState<number>(4);
   const [beatNote, setBeatNote] = useState<NoteDuration>("quarter");
@@ -37,7 +37,7 @@ export const BPMCalculator: React.FC = () => {
 
   const bpmCalculator = new BPM(bpm);
 
-  clickTrack.setBPM(bpm);
+  clickTrack.current.setBPM(bpm);
 
   const notes = [
     {
@@ -202,7 +202,7 @@ export const BPMCalculator: React.FC = () => {
               onClick={() => {
                 const result = beatsPerMeasure + 1;
                 setBeatsPerMeasure(result);
-                clickTrack.setBeatsPerMeasure(result);
+                clickTrack.current.setBeatsPerMeasure(result);
               }}
             >
               <ArrowIcon className="arrow" />
@@ -215,7 +215,7 @@ export const BPMCalculator: React.FC = () => {
                 const result = beatsPerMeasure - 1;
                 if (result >= ClickTrack.MIN_BEATS_PER_MEASURE) {
                   setBeatsPerMeasure(result);
-                  clickTrack.setBeatsPerMeasure(result);
+                  clickTrack.current.setBeatsPerMeasure(result);
                 }
               }}
               style={{ marginTop: "5px" }}
@@ -328,16 +328,17 @@ export const BPMCalculator: React.FC = () => {
 };
 
 const Beeper: React.FC = () => {
+  const clickTrack = useClickTrackRef();
   const [currentBeat, setCurrentBeat] = useState<number>(1);
 
   // hook that updates currentBeat whenever the Metronome ticks. Must ensure
   // this hook has zero dependencies so that the callback only gets
   // registered once.
   useEffect(() => {
-    clickTrack.addClickCallback(({ currentBeat }) =>
+    clickTrack.current.addClickCallback(({ currentBeat }) =>
       setCurrentBeat(currentBeat)
     );
-  }, []);
+  }, [clickTrack]);
 
   return (
     <span
@@ -353,6 +354,7 @@ const Beeper: React.FC = () => {
 };
 
 const PlaybackBtn: React.FC = () => {
+  const clickTrack = useClickTrackRef();
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
 
   return (
@@ -363,11 +365,11 @@ const PlaybackBtn: React.FC = () => {
       }`}
       onClick={() => {
         if (isPlaying) {
-          clickTrack.stop();
+          clickTrack.current.stop();
           return setIsPlaying(false);
         }
 
-        clickTrack.start().then(() => {
+        clickTrack.current.start().then(() => {
           setIsPlaying(true);
         });
       }}

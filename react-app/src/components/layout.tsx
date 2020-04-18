@@ -1,13 +1,10 @@
 import React from "react";
 
-import { PWAEvent } from "../app";
 import "./layout.css";
+import { usePWA } from "../contexts/pwa";
 
-interface Props {
-  pwaEvt: PWAEvent | undefined;
-}
-
-export const Layout: React.FC<Props> = ({ children, pwaEvt }) => {
+export const Layout: React.FC = ({ children }) => {
+  const pwaEvt = usePWA();
   return (
     <>
       <header className="header">
