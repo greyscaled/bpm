@@ -263,6 +263,7 @@ export const BPMCalculator: React.FC = () => {
           {notes.map(({ note, value }) => (
             <button
               aria-label={`Sets the beat note to a ${value} note`}
+              aria-pressed={value === beatNote}
               className={`btn note-btn ${value === beatNote ? "pushed" : ""}`}
               key={value}
               onClick={() => {
@@ -327,7 +328,8 @@ const PlaybackBtn: React.FC = () => {
   return (
     <div className="playback-btn-wrap">
       <button
-        aria-label={`${isPlaying ? "Stops" : "Starts"} sounding the metronome`}
+        aria-label="Starts sounding the metronome"
+        aria-pressed={isPlaying}
         className={`playback-btn play ${
           isPlaying ? "playback-btn--on pushed" : "playback-btn--off"
         }`}
@@ -342,7 +344,8 @@ const PlaybackBtn: React.FC = () => {
         <PlayIcon />
       </button>
       <button
-        aria-label={`${isPlaying ? "Stops" : "Starts"} sounding the metronome`}
+        aria-label="Stops sounding the metronome"
+        aria-pressed={!isPlaying}
         className={`playback-btn stop  ${
           isPlaying ? "playback-btn--off" : "playback-btn--on pushed"
         }`}

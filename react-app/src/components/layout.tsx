@@ -1,7 +1,7 @@
 import React from "react";
 
-import { usePWA } from "../contexts/pwa";
 import "./layout.scss";
+import { usePWA } from "../contexts/pwa";
 
 const version = require("../../package.json").version;
 
