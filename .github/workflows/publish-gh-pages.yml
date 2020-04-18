@@ -8,7 +8,7 @@ jobs:
   publish:
     runs-on: ubuntu-latest
 
-    if: contains(github.ref, "react-app")
+    if: contains(github.ref, 'react-app')
     steps:
       - uses: actions/checkout@v2
         name: Checkout
