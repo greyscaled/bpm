@@ -23,7 +23,11 @@ calculations. For more information, please read its [README.md](lib/README.md)
 
 ### react-app
 
-[![BPM Calculator UI](./img/bpm-calc.JPG)](https://vapurrmaid.ca/bpm)
+<p align="center">
+  <a href="https://vapurrmaid.ca/bpm">
+    <img alt="BPM Calculator UI" src="./img/bpm-calc.png">
+  </a>
+</p>
 
 The `react-app/` directory contains an example web application that uses the
 `lib`. The application offers a UI for calculating information about notes based
