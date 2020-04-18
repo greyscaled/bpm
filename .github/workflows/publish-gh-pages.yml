@@ -1,13 +1,14 @@
 name: Publish to GH Pages
 
 on:
-  push:
-    branches: [master]
+  release:
+    types: [published]
 
 jobs:
   publish:
     runs-on: ubuntu-latest
 
+    if: contains(github.ref, "react-app")
     steps:
       - uses: actions/checkout@v2
         name: Checkout
