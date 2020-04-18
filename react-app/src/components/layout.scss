@@ -1,11 +1,15 @@
-.header {
+@import "../vars.scss";
+
+.header h1 {
   align-items: center;
-  color: #9b102a;
+  color: #fff;
   display: flex;
-  font-family: "Orbitron", sans-serif;
-  font-weight: normal;
+  font-family: "Teko", sans-serif;
+  font-size: 50px;
+  font-weight: 400;
   justify-content: center;
   letter-spacing: 5px;
+  text-transform: uppercase;
 }
 
 .pwa-install-btn {
@@ -16,10 +20,11 @@
   cursor: pointer;
   margin-left: 8px;
   padding: 5px;
-}
-.pwa-install-btn:hover {
-  background-color: rgba(204, 74, 98, 0.5);
-  color: #eee;
+
+  &:hover {
+    background-color: rgba(204, 74, 98, 0.5);
+    color: #eee;
+  }
 }
 
 @media screen and (max-width: 400px) {
@@ -41,11 +46,13 @@
 }
 
 .article {
-  color: white;
+  font-size: 13px;
+  color: #777;
 }
 
 .footer {
-  color: white;
+  font-size: 12px;
+  color: lighten($darkBlue, 40%);
 }
 
 .link,

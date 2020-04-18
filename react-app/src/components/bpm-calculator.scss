@@ -1,0 +1,351 @@
+@import "../vars.scss";
+
+$lcdSize: 50px;
+
+$fieldsetSpacing: 10px;
+
+@mixin lcd {
+  height: $lcdSize;
+  padding: 6px;
+
+  border: 0;
+  background-color: rgba($lcd, 0.06);
+  border: 1px solid darken($darkBlue, 5%);
+  box-shadow: inset 0 0 6px rgba($lcd, 0.2), 0 0 12px lighten($darkBlue, 3%);
+
+  font-family: "Cutive Mono", sans-serif;
+  font-size: 40px;
+  color: $lcd;
+  text-shadow: 0 0 4px rgba($lcd, 0.8);
+  text-align: right;
+}
+
+$blackBtnSize: $lcdSize;
+
+@mixin blackBtnGroup($vertical: false) {
+  box-shadow: 0 0 0 2px #121212;
+  border-radius: 3px;
+  background: #222;
+  background-clip: border-box;
+
+  @if ($vertical) {
+    width: $blackBtnSize;
+  } @else {
+    height: $blackBtnSize;
+  }
+}
+
+@mixin blackBtn($vertical: false) {
+  cursor: pointer;
+  border: 0;
+  height: 100%;
+  margin: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  width: $blackBtnSize;
+  height: $blackBtnSize;
+
+  border-radius: 2px;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2),
+    0 6px 10px -1px rgba(0, 0, 0, 0.6);
+  background: linear-gradient(to bottom, #37373d 0%, #222228 100%);
+
+  $borderCol: #121212;
+  @if ($vertical) {
+    &:not(:first-child) {
+      border-top: 1px solid $borderCol;
+    }
+    &:not(:last-child) {
+      border-bottom: 1px solid $borderCol;
+    }
+  } @else {
+    &:not(:first-child) {
+      border-left: 1px solid $borderCol;
+    }
+    &:not(:last-child) {
+      border-right: 1px solid $borderCol;
+    }
+  }
+
+  svg path {
+    transition: 0.2s ease all;
+    fill: white;
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  &:hover {
+    svg path {
+      fill: $btnLit;
+    }
+  }
+
+  &.pushed {
+    cursor: default;
+  }
+
+  &.pushed,
+  &:active {
+    outline: none;
+    text-shadow: 0 0 10px hsla(208.12, 44.44%, 85.88%, 1);
+    color: #fff;
+    box-shadow: inset 0 2px 3px rgba(0, 0, 0, 0.4),
+      inset 0 0 4px 4px rgba(0, 0, 0, 0.1);
+
+    background: linear-gradient(to bottom, #313137 0%, #1e1e24 100%);
+
+    svg path {
+      fill: $btnLit;
+    }
+  }
+}
+
+// Calculator
+.calculator {
+  width: 460px;
+  max-width: 100%;
+
+  padding: 28px;
+
+  border-radius: 10px;
+  background: darken($darkBlue, 2%);
+  box-shadow: inset 0 0 20px darken($darkBlue, 6%);
+
+  // Fieldsets
+  .fieldset {
+    margin: 10px;
+    padding: $fieldsetSpacing;
+
+    border-radius: 2px;
+    border: 1px solid lighten($darkBlue, 10%);
+
+    legend {
+      display: none;
+    }
+  }
+
+  // Top
+  &-top {
+    display: flex;
+    justify-content: space-between;
+
+    &-btn-group {
+      @include blackBtnGroup($vertical: true);
+
+      height: $blackBtnSize * 2;
+    }
+    &-btn {
+      @include blackBtn($vertical: true);
+
+      $btnSize: 24px;
+      svg {
+        width: $btnSize;
+        height: $btnSize;
+      }
+    }
+  }
+
+  // BPM
+  &-bpm {
+    display: flex;
+
+    .calculator-top-btn-group {
+      margin-right: $fieldsetSpacing;
+    }
+
+    &-displays {
+      display: flex;
+      flex-direction: column;
+
+      &-bottom {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-top: $fieldsetSpacing;
+      }
+    }
+
+    .bpm-display {
+      @include lcd;
+
+      width: 100px;
+      padding: 8px;
+    }
+  }
+
+  // Time Signature
+  &-signature {
+    display: flex;
+    flex-direction: row;
+
+    .calculator-top-btn-group {
+      margin-left: $fieldsetSpacing;
+    }
+
+    &-lcd {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+
+  // Playback
+  &-playback {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.arrow {
+  &--up {
+    transform: rotate(-90deg);
+  }
+  &--left {
+    transform: rotate(180deg);
+  }
+  &--right {
+    transform: rotate(0deg);
+  }
+  &--down {
+    transform: rotate(90deg);
+  }
+}
+
+// Beeper lights
+.beeper {
+  transition: 0.1s ease all;
+  $beeperSize: 14px;
+
+  display: inline-block;
+  height: $beeperSize;
+  width: $beeperSize;
+
+  margin: 0 3px;
+
+  border-radius: 50%;
+  border: 1px solid lighten($darkBlue, 10%);
+  background-color: darken($lcd, 46%);
+
+  &--downbeat.on {
+    background-color: $downbeat;
+    box-shadow: 0 0 5px $downbeat;
+  }
+  &--upbeat.on {
+    background-color: $upbeat;
+    box-shadow: 0 0 5px $upbeat;
+  }
+  &--oddbeat.on {
+    background-color: $oddbeat;
+    box-shadow: 0 0 5px $oddbeat;
+  }
+}
+
+.label {
+  color: #fff;
+  font-family: "Teko", sans-serif;
+  font-size: 18px;
+}
+
+.time-signature {
+  @include lcd;
+
+  width: 72px;
+}
+
+.note-info {
+  @include lcd;
+  height: auto;
+  width: 100%;
+
+  padding: 12px;
+
+  $noteSize: 20px;
+
+  &-line {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 6px 0;
+
+    // font-family: $fontText;
+    // font-weight: 500;
+    font-size: 16px;
+    line-height: $noteSize;
+    // color: white;
+
+    svg {
+      width: $noteSize;
+      height: $noteSize;
+
+      path {
+        fill: $lcd;
+      }
+    }
+  }
+}
+
+.note-icon {
+  width: 12px;
+  height: 12px;
+}
+
+.note-btn-group {
+  @include blackBtnGroup;
+
+  display: flex;
+
+  .note-btn {
+    @include blackBtn;
+
+    $noteSize: 28px;
+
+    svg {
+      width: $noteSize;
+      height: $noteSize;
+    }
+  }
+}
+
+.playback-btn-wrap {
+  @include blackBtnGroup;
+
+  display: flex;
+  align-self: center;
+  width: $blackBtnSize * 2 + 20px;
+
+  .playback-btn {
+    @include blackBtn;
+
+    cursor: pointer;
+
+    $iconSize: 24px;
+
+    svg {
+      width: $iconSize;
+      height: $iconSize;
+    }
+
+    &.play {
+      &.pushed,
+      &:hover {
+        svg path {
+          fill: $play;
+        }
+      }
+    }
+
+    &.stop {
+      &.pushed,
+      &:hover {
+        svg path {
+          fill: $stop;
+        }
+      }
+    }
+  }
+}
