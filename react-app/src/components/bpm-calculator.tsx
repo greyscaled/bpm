@@ -111,117 +111,124 @@ export const BPMCalculator: React.FC = () => {
   return (
     <div className="calculator">
       <div className="calculator-top">
-        <div className="calculator-bpm fieldset">
+        <fieldset className="fieldset">
           <legend>BPM Controls</legend>
 
-          <div className="calculator-bpm-btns calculator-top-btn-group">
-            <button
-              aria-label="Increase beats per minute"
-              className="calculator-top-btn"
-              onClick={handleIncreaseBpm}
-              // onTouchStart={handleIncreaseBpm}
-              // onTouchEnd={clearTimer}
-              // onMouseDown={handleIncreaseBpm}
-              // onMouseUp={clearTimer}
-              // onMouseLeave={clearTimer}
-            >
-              <ArrowIcon className="arrow arrow--up" />
-            </button>
-            <button
-              aria-label="Decrease beats per minute"
-              className="calculator-top-btn"
-              onClick={handleDecreaseBpm}
-              // onTouchStart={handleDecreaseBpm}
-              // onTouchEnd={clearTimer}
-              // onMouseDown={handleDecreaseBpm}
-              // onMouseUp={clearTimer}
-              // onMouseLeave={clearTimer}
-            >
-              <ArrowIcon className="arrow arrow--down" />
-            </button>
-          </div>
+          <div className="calculator-bpm">
+            <div className="calculator-bpm-btns calculator-top-btn-group">
+              <button
+                aria-label="Increase beats per minute"
+                className="calculator-top-btn"
+                onClick={handleIncreaseBpm}
+                // onTouchStart={handleIncreaseBpm}
+                // onTouchEnd={clearTimer}
+                // onMouseDown={handleIncreaseBpm}
+                // onMouseUp={clearTimer}
+                // onMouseLeave={clearTimer}
+              >
+                <ArrowIcon className="arrow arrow--up" />
+              </button>
+              <button
+                aria-label="Decrease beats per minute"
+                className="calculator-top-btn"
+                onClick={handleDecreaseBpm}
+                // onTouchStart={handleDecreaseBpm}
+                // onTouchEnd={clearTimer}
+                // onMouseDown={handleDecreaseBpm}
+                // onMouseUp={clearTimer}
+                // onMouseLeave={clearTimer}
+              >
+                <ArrowIcon className="arrow arrow--down" />
+              </button>
+            </div>
 
-          <div className="calculator-bpm-displays">
-            <input
-              className="bpm-display"
-              disabled
-              id="bpmDisplay"
-              max={ClickTrack.MAX_BEATS_PER_MINUTE}
-              min={ClickTrack.MIN_BEATS_PER_MINUTE}
-              type="text"
-              value={bpm}
-            />
+            <div className="calculator-bpm-displays">
+              <input
+                className="bpm-display"
+                disabled
+                id="bpmDisplay"
+                max={ClickTrack.MAX_BEATS_PER_MINUTE}
+                min={ClickTrack.MIN_BEATS_PER_MINUTE}
+                type="text"
+                value={bpm}
+              />
 
-            <div className="calculator-bpm-displays-bottom">
-              <div className="beepers">
-                <Beeper />
+              <div className="calculator-bpm-displays-bottom">
+                <div className="beepers">
+                  <Beeper />
+                </div>
+
+                <label className="label" htmlFor="bpmDisplay">
+                  BPM
+                </label>
               </div>
-
-              <label className="label" htmlFor="bpmDisplay">
-                BPM
-              </label>
             </div>
           </div>
-        </div>
+        </fieldset>
 
-        <div className="calculator-signature fieldset">
+        <fieldset className="fieldset">
           <legend>Time Signature Controls</legend>
 
-          <div className="calculator-signature-lcd">
-            <label htmlFor="beatsPerMeasureDisplay" style={{ display: "none" }}>
-              Beats per measure
-            </label>
-            <input
-              className="time-signature"
-              disabled
-              id="beatsPerMeasureDisplay"
-              min={ClickTrack.MIN_BEATS_PER_MEASURE}
-              type="text"
-              value={beatsPerMeasure}
-            />
-            <label htmlFor="beatNoteDisplay" style={{ display: "none" }}>
-              Beat note
-            </label>
-            <input
-              className="time-signature"
-              disabled
-              id="beatNoteDisplay"
-              type="text"
-              value={beatNoteToNumber(beatNote)}
-            />
-          </div>
+          <div className="calculator-signature">
+            <div className="calculator-signature-lcd">
+              <label
+                htmlFor="beatsPerMeasureDisplay"
+                style={{ display: "none" }}
+              >
+                Beats per measure
+              </label>
+              <input
+                className="time-signature"
+                disabled
+                id="beatsPerMeasureDisplay"
+                min={ClickTrack.MIN_BEATS_PER_MEASURE}
+                type="text"
+                value={beatsPerMeasure}
+              />
+              <label htmlFor="beatNoteDisplay" style={{ display: "none" }}>
+                Beat note
+              </label>
+              <input
+                className="time-signature"
+                disabled
+                id="beatNoteDisplay"
+                type="text"
+                value={beatNoteToNumber(beatNote)}
+              />
+            </div>
 
-          <div className="calculator-top-btn-group">
-            <button
-              aria-label="Increase beats per measure"
-              className="calculator-top-btn"
-              onClick={() => {
-                const result = beatsPerMeasure + 1;
-                setBeatsPerMeasure(result);
-                clickTrack.current.setBeatsPerMeasure(result);
-              }}
-            >
-              <ArrowIcon className="arrow arrow--up" />
-            </button>
-            <button
-              aria-label="Decrease beats per measure"
-              className="calculator-top-btn"
-              disabled={beatsPerMeasure === ClickTrack.MIN_BEATS_PER_MEASURE}
-              onClick={() => {
-                const result = beatsPerMeasure - 1;
-                if (result >= ClickTrack.MIN_BEATS_PER_MEASURE) {
+            <div className="calculator-top-btn-group">
+              <button
+                aria-label="Increase beats per measure"
+                className="calculator-top-btn"
+                onClick={() => {
+                  const result = beatsPerMeasure + 1;
                   setBeatsPerMeasure(result);
                   clickTrack.current.setBeatsPerMeasure(result);
-                }
-              }}
-            >
-              <ArrowIcon className="arrow arrow--down" />
-            </button>
+                }}
+              >
+                <ArrowIcon className="arrow arrow--up" />
+              </button>
+              <button
+                aria-label="Decrease beats per measure"
+                className="calculator-top-btn"
+                disabled={beatsPerMeasure === ClickTrack.MIN_BEATS_PER_MEASURE}
+                onClick={() => {
+                  const result = beatsPerMeasure - 1;
+                  if (result >= ClickTrack.MIN_BEATS_PER_MEASURE) {
+                    setBeatsPerMeasure(result);
+                    clickTrack.current.setBeatsPerMeasure(result);
+                  }
+                }}
+              >
+                <ArrowIcon className="arrow arrow--down" />
+              </button>
+            </div>
           </div>
-        </div>
+        </fieldset>
       </div>
 
-      <div className="fieldset">
+      <fieldset className="fieldset">
         <legend>Note Information</legend>
 
         <section className="note-info">
@@ -247,16 +254,16 @@ export const BPMCalculator: React.FC = () => {
             </div>
           ))}
         </section>
-      </div>
+      </fieldset>
 
-      <div className="calculator-notes fieldset">
+      <fieldset className="fieldset">
         <legend>Beat Note Controls</legend>
 
         <div className="note-btn-group">
           {notes.map(({ note, value }) => (
             <button
               aria-label={`Sets the beat note to a ${value} note`}
-              className={`btn note-btn ${value && value}`}
+              className={`btn note-btn ${value === beatNote ? "pushed" : ""}`}
               key={value}
               onClick={() => {
                 setBeatNote(value as NoteDuration);
@@ -266,13 +273,15 @@ export const BPMCalculator: React.FC = () => {
             </button>
           ))}
         </div>
-      </div>
+      </fieldset>
 
-      <div className="calculator-playback fieldset">
+      <fieldset className="fieldset">
         <legend>Playback Controls</legend>
 
-        <PlaybackBtn />
-      </div>
+        <div className="calculator-playback">
+          <PlaybackBtn />
+        </div>
+      </fieldset>
     </div>
   );
 };
