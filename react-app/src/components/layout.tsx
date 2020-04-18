@@ -3,28 +3,34 @@ import React from "react";
 import { usePWA } from "../contexts/pwa";
 import "./layout.scss";
 
+const version = require("../../package.json").version;
+
 export const Layout: React.FC = ({ children }) => {
   const pwaEvt = usePWA();
   return (
     <>
       <header className="header">
-        <h1>Beats Calculator</h1>
-        {pwaEvt && (
+        <h1 className="app-title">Beats Calculator</h1>
+        {pwaEvt ? (
           <button className="pwa-install-btn" onClick={() => pwaEvt.prompt()}>
-            Install
+            Install Version {version}
           </button>
+        ) : (
+          <div className="version-box">
+            <span>Version {version}</span>
+          </div>
         )}
       </header>
 
       <main className="main">
-        <article className="article" style={{ marginBottom: "20px" }}>
-          A digital metronome with extended beat and note length metrics.
+        <article className="article">
+          A digital metronome with beat and note length metrics
         </article>
 
         {children}
       </main>
 
-      <footer className="footer" style={{ marginTop: "40px" }}>
+      <footer className="footer">
         <p>
           {`\u00A9 ${new Date().getFullYear()}`}{" "}
           <a
