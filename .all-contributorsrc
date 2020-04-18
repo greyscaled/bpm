@@ -1,0 +1,37 @@
+{
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "contributors": [
+    {
+      "login": "vapurrmaid",
+      "name": "G r e y",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/11184711?v=4",
+      "profile": "https://vapurrmaid.ca",
+      "contributions": [
+        "code",
+        "doc",
+        "infra",
+        "platform"
+      ]
+    },
+    {
+      "login": "updownupdown",
+      "name": "James Carmichael",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/11744140?v=4",
+      "profile": "https://www.jamescarmichael.ca/",
+      "contributions": [
+        "code",
+        "design"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "projectName": "bpm",
+  "projectOwner": "vapurrmaid",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "skipCi": true
+}
