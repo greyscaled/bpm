@@ -2,12 +2,12 @@ import { BPM, NoteDuration } from "@vapurrmaid/bpm";
 import React, { useEffect, /* useRef, */ useState } from "react";
 
 import "./bpm-calculator.css";
-import { ReactComponent as ArrowIcon } from "./arrow.svg";
-import { ReactComponent as EighthNoteIcon } from "./eighth.svg";
-import { ReactComponent as HalfNoteIcon } from "./half.svg";
-import { ReactComponent as QuarterNoteIcon } from "./quarter.svg";
-import { ReactComponent as SixteenthNoteIcon } from "./sixteenth.svg";
-import { ReactComponent as WholeNoteIcon } from "./whole.svg";
+import { ReactComponent as ArrowIcon } from "./icons/arrow.svg";
+import { ReactComponent as EighthNoteIcon } from "./icons/eighth.svg";
+import { ReactComponent as HalfNoteIcon } from "./icons/half.svg";
+import { ReactComponent as QuarterNoteIcon } from "./icons/quarter.svg";
+import { ReactComponent as SixteenthNoteIcon } from "./icons/sixteenth.svg";
+import { ReactComponent as WholeNoteIcon } from "./icons/whole.svg";
 import { useClickTrackRef } from "../contexts/clicktrack";
 import { ClickTrack } from "../util/clicktrack";
 import { formatDecimal } from "../util/strings";
