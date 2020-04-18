@@ -23,5 +23,5 @@
   "theme_color": "#303846",
   "background_color": "#303846",
   "categories": ["music"],
-  "description": "Beats calculator is a combines a metronome with extended metrics on beats and notes."
+  "description": "A digital metronome with beat and note length metrics."
 }
