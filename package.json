@@ -10,19 +10,19 @@
     "lint:react": "eslint --color --ext=ts,tsx react-app"
   },
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^2.26.0",
-    "@typescript-eslint/parser": "^2.26.0",
+    "@typescript-eslint/eslint-plugin": "^4.1.1",
+    "@typescript-eslint/parser": "^4.1.1",
     "all-contributors-cli": "^6.14.2",
-    "eslint": "^6.8.0",
+    "eslint": "^7.9.0",
     "eslint-plugin-import": "^2.20.2",
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-react": "^7.19.0",
-    "eslint-plugin-react-hooks": "^3.0.0",
+    "eslint-plugin-react-hooks": "^4.1.2",
     "husky": "^4.2.3",
     "lint-staged": "^10.1.2",
     "prettier": "^2.0.2",
-    "release-it": "^13.5.1",
-    "typescript": "^3.8.3"
+    "release-it": "^14.0.3",
+    "typescript": "^4.0.3"
   },
   "husky": {
     "hooks": {
