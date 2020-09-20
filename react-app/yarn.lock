@@ -1638,14 +1638,14 @@
     semver "^7.3.2"
     tsutils "^3.17.1"
 
-"@vapurrmaid/bpm@^0.1.3":
-  version "0.1.4"
-  resolved "https://registry.yarnpkg.com/@vapurrmaid/bpm/-/bpm-0.1.4.tgz#dc6b60af6a7a0d34c8f16bab80cc9eeb375aafe4"
-  integrity sha512-Q30CrajX5v+P+8T8pjbptH3SrEXF+5Z1fKizVSzwQZoX1hTBm7SdpT0V+D8msn6IyPz7toLRU3O44m+R02AJrw==
+"@vapurrmaid/bpm@^0.1.7":
+  version "0.1.7"
+  resolved "https://registry.yarnpkg.com/@vapurrmaid/bpm/-/bpm-0.1.7.tgz#af90a93959135dfed91028e2a099a0e4c52c6ea9"
+  integrity sha512-o/iFcTp1I7q+zFUmxYeNBvD6a7uayPMBM08LHalb4sVb+69XD2iKWEGxJuU3QV1+IQ/zSTui7m0fE3JamS3jDg==
   dependencies:
-    "@vapurrmaid/validate" "^0.3.0"
+    "@vapurrmaid/validate" "^0.3.4"
 
-"@vapurrmaid/validate@^0.3.0":
+"@vapurrmaid/validate@^0.3.4":
   version "0.3.4"
   resolved "https://registry.yarnpkg.com/@vapurrmaid/validate/-/validate-0.3.4.tgz#35274fe6e7e568df2685ebbed1d8811936bf8b8d"
   integrity sha512-PWvPs4Su9HXLe20MEABNja85fHla+QRPDX8C7VL/AGleO1fxzBUX0J47POm+FpWYA5zviSntoOISRHt81WglMQ==

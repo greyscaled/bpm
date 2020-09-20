@@ -8,7 +8,7 @@
     "build": "react-scripts build"
   },
   "dependencies": {
-    "@vapurrmaid/bpm": "^0.1.3",
+    "@vapurrmaid/bpm": "^0.1.7",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "tone": "14.5.43"
