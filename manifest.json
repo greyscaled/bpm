@@ -1,0 +1,27 @@
+{
+  "short_name": "Beats Calculator",
+  "name": "Beats Calculator",
+  "icons": [
+    {
+      "src": "favicon.png",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/png"
+    },
+    {
+      "src": "bpmcalc192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "bpmcalc512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#303846",
+  "background_color": "#303846",
+  "categories": ["music"],
+  "description": "A digital metronome with beat and note length metrics."
+}
