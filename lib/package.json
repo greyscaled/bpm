@@ -31,9 +31,9 @@
     "clean": "rm -rf dist"
   },
   "dependencies": {
-    "@vapurrmaid/validate": "^0.3.0"
+    "@vapurrmaid/validate": "^0.3.4"
   },
   "devDependencies": {
-    "typescript": "^3.8.3"
+    "typescript": "^4.0.3"
   }
 }
