@@ -32,10 +32,7 @@ export class BPM {
    * @throws An Error if bpm is less than or equal to 0
    */
   constructor(bpm: number) {
-    Validate.n(bpm).isGreaterThan(
-      0,
-      `bpm must be greater than 0. Instead received: ${bpm}`
-    );
+    Validate.n(bpm).isGreaterThan(0, `bpm must be greater than 0. Instead received: ${bpm}`);
 
     this.value = bpm;
   }
@@ -81,17 +78,14 @@ export class BPM {
   /**
    * Returns the duration (in seconds) of the given note at this BPM.
    */
-  durationFor(aNote: NoteDuration, beatNote: NoteDuration = "quarter") {
+  durationFor(aNote: NoteDuration, beatNote: NoteDuration = "quarter"): number {
     return 60.0 / this.numberOfBeatsFor(aNote, beatNote);
   }
 
   /**
    * Returns the number of beats per minute for the given note.
    */
-  numberOfBeatsFor(aNote: NoteDuration, beatNote: NoteDuration = "quarter") {
-    return this.applyBeatNote(
-      this.normalizeToQuarter(this.value, beatNote),
-      aNote
-    );
+  numberOfBeatsFor(aNote: NoteDuration, beatNote: NoteDuration = "quarter"): number {
+    return this.applyBeatNote(this.normalizeToQuarter(this.value, beatNote), aNote);
   }
 }

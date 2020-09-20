@@ -2,24 +2,47 @@
   "root": true,
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
-    "tsconfigRootDir": ".",
-    "project": ["./lib/tsconfig.json", "./react-app/tsconfig.json"]
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": 2020,
+    "project": ["./tsconfig.json", "./lib/tsconfig.json", "./react-app/tsconfig.json"],
+    "sourceType": "module"
   },
-  "plugins": ["@typescript-eslint"],
   "extends": [
     "eslint:recommended",
-    "plugin:@typescript-eslint/eslint-recommended",
     "plugin:@typescript-eslint/recommended",
-    "plugin:@typescript-eslint/recommended-requiring-type-checking",
-    "plugin:import/errors",
-    "plugin:import/typescript"
+    "plugin:import/recommended",
+    "plugin:import/typescript",
+    "plugin:react/recommended",
+    "plugin:react-hooks/recommended",
+    "plugin:jsx-a11y/strict",
+    "prettier/@typescript-eslint",
+    "plugin:prettier/recommended"
   ],
+  "plugins": ["@typescript-eslint"],
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
   "rules": {
     "@typescript-eslint/explicit-function-return-type": "off",
     "@typescript-eslint/no-unused-vars": "error",
     "@typescript-eslint/no-use-before-define": "off",
     "import/named": "off",
     "import/no-default-export": ["error"],
-    "import/prefer-default-export": "off"
+    "import/prefer-default-export": "off",
+    "jsx-a11y/label-has-for": [
+      2,
+      {
+        "components": ["Label"],
+        "required": {
+          "every": ["id"]
+        },
+        "allowChildren": false
+      }
+    ],
+    "react/prop-types": "off"
   }
 }

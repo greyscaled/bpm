@@ -6,7 +6,15 @@ interface PWAEvent extends Event {
 
 const PWAContext = createContext<PWAEvent | undefined>(undefined);
 
-export const usePWA = () => useContext(PWAContext);
+export const usePWA = (): PWAEvent => {
+  const val = useContext(PWAContext);
+
+  if (!val) {
+    throw new Error();
+  }
+
+  return val;
+};
 
 export const PWAProvider: React.FC = ({ children }) => {
   const [pwaEvt, setPwaEvt] = useState<PWAEvent | undefined>(undefined);

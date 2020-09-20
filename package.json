@@ -12,15 +12,19 @@
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^4.1.1",
     "@typescript-eslint/parser": "^4.1.1",
+    "@vapurrmaid/prettier-config": "^0.3.0",
     "all-contributors-cli": "^6.14.2",
     "eslint": "^7.9.0",
+    "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-import": "^2.20.2",
     "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-prettier": "^3.1.4",
     "eslint-plugin-react": "^7.19.0",
     "eslint-plugin-react-hooks": "^4.1.2",
     "husky": "^4.2.3",
     "lint-staged": "^10.1.2",
-    "prettier": "^2.0.2",
+    "prettier": "^2.1.2",
+    "prettier-plugin-organize-imports": "^1.1.1",
     "release-it": "^14.0.3",
     "typescript": "^4.0.3"
   },
@@ -30,11 +34,11 @@
     }
   },
   "lint-staged": {
-    "*.{css,html,json,yaml,yml}": "prettier --print-width=80 --write",
+    "*.{css,html,json,yaml,yml}": "prettier --write",
     "*.md": "prettier --prose-wrap=always --print-width=80 --write",
     "*.ts,tsx": [
       "eslint --color",
-      "prettier --print-width=80 --write"
+      "prettier --write"
     ]
   }
 }

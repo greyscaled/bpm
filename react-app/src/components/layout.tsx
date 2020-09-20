@@ -1,8 +1,8 @@
 import React from "react";
-
-import "./layout.scss";
 import { usePWA } from "../contexts/pwa";
+import "./layout.scss";
 
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const version = require("../../package.json").version;
 
 export const Layout: React.FC = ({ children }) => {
@@ -23,9 +23,7 @@ export const Layout: React.FC = ({ children }) => {
       </header>
 
       <main className="main">
-        <article className="article">
-          A digital metronome with beat and note length metrics
-        </article>
+        <article className="article">A digital metronome with beat and note length metrics</article>
 
         {children}
       </main>

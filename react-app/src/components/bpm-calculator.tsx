@@ -1,18 +1,17 @@
 import { BPM, NoteDuration } from "@vapurrmaid/bpm";
 import React, { useEffect, /* useRef, */ useState } from "react";
-
-import "./bpm-calculator.scss";
-import { ReactComponent as ArrowIcon } from "./icons/arrow.svg";
-import { ReactComponent as PlayIcon } from "./icons/play.svg";
-import { ReactComponent as StopIcon } from "./icons/stop.svg";
-import { ReactComponent as WholeNoteIcon } from "./icons/whole.svg";
-import { ReactComponent as HalfNoteIcon } from "./icons/half.svg";
-import { ReactComponent as QuarterNoteIcon } from "./icons/quarter.svg";
-import { ReactComponent as EighthNoteIcon } from "./icons/eighth.svg";
-import { ReactComponent as SixteenthNoteIcon } from "./icons/sixteenth.svg";
 import { useClickTrackRef } from "../contexts/clicktrack";
 import { ClickTrack } from "../util/clicktrack";
 import { formatDecimal } from "../util/strings";
+import "./bpm-calculator.scss";
+import { ReactComponent as ArrowIcon } from "./icons/arrow.svg";
+import { ReactComponent as EighthNoteIcon } from "./icons/eighth.svg";
+import { ReactComponent as HalfNoteIcon } from "./icons/half.svg";
+import { ReactComponent as PlayIcon } from "./icons/play.svg";
+import { ReactComponent as QuarterNoteIcon } from "./icons/quarter.svg";
+import { ReactComponent as SixteenthNoteIcon } from "./icons/sixteenth.svg";
+import { ReactComponent as StopIcon } from "./icons/stop.svg";
+import { ReactComponent as WholeNoteIcon } from "./icons/whole.svg";
 
 function beatNoteToNumber(note: NoteDuration) {
   if (note === "thirtysecondth") {
@@ -171,10 +170,7 @@ export const BPMCalculator: React.FC = () => {
 
           <div className="calculator-signature">
             <div className="calculator-signature-lcd">
-              <label
-                htmlFor="beatsPerMeasureDisplay"
-                style={{ display: "none" }}
-              >
+              <label htmlFor="beatsPerMeasureDisplay" style={{ display: "none" }}>
                 Beats per measure
               </label>
               <input
@@ -243,9 +239,7 @@ export const BPMCalculator: React.FC = () => {
               </span>
 
               <span style={{ display: "flex" }}>
-                <span
-                  aria-label={`Number of seconds for each ${value} note at bpm ${bpm}`}
-                >
+                <span aria-label={`Number of seconds for each ${value} note at bpm ${bpm}`}>
                   {formatDecimal(seconds)}
                 </span>
 
@@ -295,23 +289,13 @@ const Beeper: React.FC = () => {
   // this hook has zero dependencies so that the callback only gets
   // registered once.
   useEffect(() => {
-    clickTrack.current.addClickCallback(({ currentBeat }) =>
-      setCurrentBeat(currentBeat)
-    );
+    clickTrack.current.addClickCallback(({ currentBeat }) => setCurrentBeat(currentBeat));
   }, [clickTrack]);
 
   return (
     <>
-      <span
-        className={`beeper beeper--downbeat ${
-          currentBeat === 1 ? "on" : "off"
-        }`}
-      />
-      <span
-        className={`beeper beeper--upbeat ${
-          currentBeat % 2 === 0 ? "on" : "off"
-        }`}
-      />
+      <span className={`beeper beeper--downbeat ${currentBeat === 1 ? "on" : "off"}`} />
+      <span className={`beeper beeper--upbeat ${currentBeat % 2 === 0 ? "on" : "off"}`} />
       <span
         className={`beeper beeper--oddbeat ${
           currentBeat !== 1 && currentBeat % 2 !== 0 ? "on" : "off"

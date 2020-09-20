@@ -1,7 +1,6 @@
 import React from "react";
-
-import { Layout } from "./components/layout";
 import { BPMCalculator } from "./components/bpm-calculator";
+import { Layout } from "./components/layout";
 import { ClickTrackProvider } from "./contexts/clicktrack";
 import { PWAProvider } from "./contexts/pwa";
 

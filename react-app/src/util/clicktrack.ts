@@ -1,4 +1,4 @@
-import { Draw, Loop, MembraneSynth, Transport, start } from "tone";
+import { Draw, Loop, MembraneSynth, start, Transport } from "tone";
 
 /**
  * Arguments supplied by ClickTrack to functions registered as callbacks to
@@ -91,11 +91,7 @@ export class ClickTrack {
         });
       }, time);
 
-      ClickTrack.synth.triggerAttackRelease(
-        currentBeat === 1 ? "G#3" : "G3",
-        "4n",
-        time
-      );
+      ClickTrack.synth.triggerAttackRelease(currentBeat === 1 ? "G#3" : "G3", "4n", time);
 
       const nextBeat = currentBeat + 1;
 
@@ -107,7 +103,7 @@ export class ClickTrack {
    * Register the supplied function to be called during each
    * 'click' event emitted by this ClickTrack.
    */
-  addClickCallback(fn: ClickCbFunction) {
+  addClickCallback(fn: ClickCbFunction): void {
     this.callback = fn;
   }
 
@@ -118,7 +114,7 @@ export class ClickTrack {
    *
    * @throws Error if bpm is outside the range (0, 220).
    */
-  setBPM(bpm: number) {
+  setBPM(bpm: number): void {
     if (bpm < 0 || bpm > 220) {
       throw new Error(`bpm must be in the range (0, 220). Received: ${bpm}`);
     }
@@ -132,11 +128,9 @@ export class ClickTrack {
    *
    * @throws Error if beatsPerMeasure is not an integer or is less than 2.
    */
-  setBeatsPerMeasure(beatsPerMeasure: number) {
+  setBeatsPerMeasure(beatsPerMeasure: number): void {
     if (!Number.isInteger(beatsPerMeasure)) {
-      throw new Error(
-        `beatsPerMeasure must be an integer. Received: ${beatsPerMeasure}`
-      );
+      throw new Error(`beatsPerMeasure must be an integer. Received: ${beatsPerMeasure}`);
     }
 
     if (beatsPerMeasure < 2) {
@@ -156,7 +150,7 @@ export class ClickTrack {
    *
    * @async
    */
-  start() {
+  start(): Promise<void> {
     return new Promise((resolve, reject) => {
       start()
         .then(() => {
@@ -173,7 +167,7 @@ export class ClickTrack {
   /**
    * Stops playing this ClickTrack.
    */
-  stop() {
+  stop(): void {
     Transport.pause();
     this.loop.stop();
   }
@@ -181,7 +175,7 @@ export class ClickTrack {
   /**
    * Number of beats in a measure. There are 4 beats per measure in 4/4.
    */
-  get beatsPerMeasure() {
+  get beatsPerMeasure(): number {
     return this._beatsPerMeasure;
   }
 
@@ -189,7 +183,7 @@ export class ClickTrack {
    * Current beat within a cycle. Must be in the interval
    * (1, beatsPerMeasure).
    */
-  get currentBeat() {
+  get currentBeat(): number {
     return this._currentBeat;
   }
 }
